@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+ <nav style="text-align: center; padding: 15px; background: #17458F;">
+  <a href="index.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Home</a>
+  <a href="Communications Hub.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Communications Hub</a>
+  <a href="events.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Events</a>
+</nav>
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
