@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MUNA 2026 — Country Draw · District 9815</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#050d20;
+  --navy-2:#0a1733;
+  --navy-3:#13234a;
+  --blue:#4a9fe0;
+  --blue-soft:#8fc4ee;
+  --gold:#f0a500;
+  --gold-bright:#ffcb47;
+  --cream:#f3efe4;
+  --muted:#8fa0c4;
+  --line:rgba(143,160,196,.22);
+  --green:#3fbf7f;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  background:
+    radial-gradient(1200px 700px at 78% -10%, rgba(74,159,224,.16), transparent 60%),
+    radial-gradient(900px 600px at 8% 110%, rgba(240,165,0,.12), transparent 55%),
+    linear-gradient(160deg, var(--navy-2) 0%, var(--navy) 65%);
+  color:var(--cream);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+/* subtle grain / atmosphere */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Ccircle cx='40' cy='40' r='1.2'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── HEADER ───────────────────────────────── */
+header{
+  position:relative;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 30px;gap:18px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(5,13,32,.7), rgba(5,13,32,0));
+  backdrop-filter:blur(4px);
+}
+.brand{display:flex;align-items:center;gap:15px;}
+.crest{
+  width:46px;height:46px;border-radius:50%;flex-shrink:0;
+  background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 70%);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:0 0 0 4px rgba(240,165,0,.16), 0 8px 24px rgba(0,0,0,.4);
+}
+.brand h1{
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;font-size:21px;line-height:1.05;
+  letter-spacing:.2px;
+}
+.brand .sub{
+  font-size:10.5px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold-bright);margin-top:3px;font-weight:600;
+}
+.head-actions{display:flex;gap:10px;align-items:center;}
+.tag-counter{
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:700;font-size:12px;
+  color:var(--blue-soft);border:1px solid var(--line);
+  padding:8px 14px;border-radius:30px;background:rgba(74,159,224,.07);
+  letter-spacing:.4px;white-space:nowrap;
+}
+.tag-counter b{color:var(--gold-bright);font-size:14px;}
+button{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;cursor:pointer;border:none;}
+.btn-ghost{
+  background:rgba(255,255,255,.06);color:var(--cream);
+  border:1px solid var(--line);border-radius:30px;
+  padding:9px 16px;font-size:12.5px;font-weight:600;transition:.18s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:var(--blue);}
+
+/* ── LAYOUT ───────────────────────────────── */
+.stage{
+  position:relative;z-index:2;
+  max-width:1320px;margin:0 auto;padding:26px 30px 60px;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+  gap:34px;align-items:start;
+}
+@media(max-width:920px){.stage{grid-template-columns:1fr;}}
+
+/* ── WHEEL ────────────────────────────────── */
+.wheel-zone{display:flex;flex-direction:column;align-items:center;}
+.wheel-frame{
+  position:relative;width:min(560px,90vw);aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.wheel-glow{
+  position:absolute;inset:-6%;border-radius:50%;
+  background:radial-gradient(circle, rgba(74,159,224,.28), transparent 62%);
+  filter:blur(14px);z-index:0;
+}
+#wheel{
+  width:100%;height:100%;position:relative;z-index:1;
+  transform:rotate(0deg);
+  filter:drop-shadow(0 22px 50px rgba(0,0,0,.55));
+}
+/* pointer at top */
+.pointer{
+  position:absolute;top:-2px;left:50%;transform:translateX(-50%);
+  z-index:4;width:0;height:0;
+  border-left:18px solid transparent;border-right:18px solid transparent;
+  border-top:34px solid var(--gold-bright);
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));
+}
+.pointer::after{
+  content:'';position:absolute;top:-44px;left:-9px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--gold-bright);box-shadow:0 0 0 5px rgba(240,165,0,.25);
+}
+.hub{
+  position:absolute;z-index:3;width:21%;height:21%;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, #1c3160, var(--navy-3) 75%);
+  border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.5), inset 0 0 18px rgba(0,0,0,.5);
+}
+.hub span{font-size:clamp(20px,4vw,30px);}
+
+/* ── CONTROLS ─────────────────────────────── */
+.panel{
+  background:linear-gradient(180deg, rgba(19,35,74,.66), rgba(10,23,51,.5));
+  border:1px solid var(--line);border-radius:20px;
+  padding:22px;box-shadow:0 18px 44px rgba(0,0,0,.32);
+}
+.eyebrow{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold-bright);font-weight:700;margin-bottom:10px;
+}
+/* spotlight: current school */
+.spotlight{
+  border:1px solid var(--line);border-radius:16px;
+  padding:20px 18px;text-align:center;margin-bottom:18px;
+  background:
+    radial-gradient(220px 120px at 50% 0%, rgba(240,165,0,.12), transparent 70%),
+    rgba(5,13,32,.4);
+  min-height:120px;display:flex;flex-direction:column;justify-content:center;gap:6px;
+  transition:.25s;
+}
+.spotlight.lit{border-color:var(--gold);box-shadow:0 0 0 3px rgba(240,165,0,.14);}
+.spotlight .role{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.spotlight .school{
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:700;
+  font-size:clamp(20px,4.4vw,30px);line-height:1.1;color:var(--cream);
+  word-break:break-word;
+}
+.spotlight .school.placeholder{color:var(--muted);font-style:italic;font-weight:600;font-size:17px;}
+.spotlight .verdict{
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;
+  font-size:clamp(22px,5vw,34px);color:var(--gold-bright);
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  animation:pop .5s cubic-bezier(.2,1.3,.4,1) both;
+}
+.spotlight .verdict .fl{font-size:1.25em;}
+@keyframes pop{from{opacity:0;transform:scale(.6);}to{opacity:1;transform:scale(1);}}
+
+.controls{display:flex;flex-direction:column;gap:11px;}
+.btn-big{
+  width:100%;padding:16px;border-radius:14px;
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:700;font-size:17px;letter-spacing:.3px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .12s, filter .18s, opacity .18s;
+}
+.btn-big:active{transform:translateY(2px) scale(.995);}
+.btn-school{background:linear-gradient(135deg,#4a9fe0,#2d6fb0);color:#fff;box-shadow:0 8px 22px rgba(45,111,176,.4);}
+.btn-spin{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#3a2600;box-shadow:0 8px 22px rgba(240,165,0,.42);}
+.btn-big:hover:not(:disabled){filter:brightness(1.07);}
+.btn-big:disabled{opacity:.32;cursor:not-allowed;box-shadow:none;}
+.row-min{display:flex;gap:10px;}
+.row-min .btn-ghost{flex:1;justify-content:center;display:flex;font-size:12px;padding:10px;}
+
+/* counters */
+.mini-stats{display:flex;gap:10px;margin-top:18px;}
+.mstat{flex:1;text-align:center;border:1px solid var(--line);border-radius:12px;padding:11px 6px;background:rgba(5,13,32,.35);}
+.mstat .n{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;font-size:24px;color:var(--blue-soft);}
+.mstat.gold .n{color:var(--gold-bright);}
+.mstat.green .n{color:var(--green);}
+.mstat .l{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+
+/* ── ALLOCATION BOARD ─────────────────────── */
+.board{grid-column:1 / -1;margin-top:6px;}
+.board-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+.board-head h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;font-size:20px;}
+.board-head .hint{font-size:12px;color:var(--muted);}
+.board-export{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;}
+.board-export .btn-ghost{font-size:11.5px;padding:7px 13px;opacity:.45;pointer-events:none;transition:.18s;}
+.board-export.ready .btn-ghost{opacity:1;pointer-events:auto;}
+@media print{
+  body{background:#fff !important;color:#000 !important;}
+  body::before,#confetti,header .head-actions,.wheel-zone,.panel,.finish,.board-export,.empty-board{display:none !important;}
+  .stage{display:block !important;padding:0 !important;}
+  .board{margin-top:0 !important;}
+  .board-head h2{color:#000 !important;}
+  .board-head .hint{display:none;}
+  .allocations{display:block !important;}
+  .alloc{break-inside:avoid;border:1px solid #ccc !important;background:#fff !important;color:#000 !important;margin-bottom:7px;}
+  .alloc .meta .country{color:#000 !important;}
+  .alloc .meta .school{color:#333 !important;opacity:1 !important;}
+}
+/* copy toast */
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--green);color:#04210f;font-weight:700;font-size:13.5px;
+  padding:12px 22px;border-radius:30px;box-shadow:0 10px 30px rgba(0,0,0,.4);
+  z-index:80;opacity:0;pointer-events:none;transition:.3s;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.allocations{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;
+}
+.alloc{
+  display:flex;align-items:center;gap:13px;
+  background:linear-gradient(180deg, rgba(19,35,74,.6), rgba(10,23,51,.45));
+  border:1px solid var(--line);border-left:4px solid var(--gold);
+  border-radius:13px;padding:13px 15px;
+  animation:slideIn .4s ease both;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.alloc .fl{font-size:30px;line-height:1;flex-shrink:0;}
+.alloc .meta{min-width:0;}
+.alloc .meta .country{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:700;font-size:16px;color:var(--gold-bright);}
+.alloc .meta .school{font-size:12.5px;color:var(--cream);opacity:.85;word-break:break-word;}
+.alloc .num{margin-left:auto;font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;color:var(--muted);font-size:15px;opacity:.6;}
+.empty-board{color:var(--muted);font-size:13px;border:1px dashed var(--line);border-radius:13px;padding:26px;text-align:center;}
+
+/* ── SETUP MODAL ──────────────────────────── */
+.overlay{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(3,8,20,.82);backdrop-filter:blur(7px);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  animation:fade .3s ease;
+}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+.overlay.hidden{display:none;}
+.modal{
+  width:min(720px,100%);max-height:90vh;overflow:auto;
+  background:linear-gradient(170deg, var(--navy-3), var(--navy-2));
+  border:1px solid var(--line);border-radius:22px;
+  padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.modal h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;font-size:24px;margin-bottom:6px;}
+.modal .lead{font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
+.field{margin-bottom:22px;}
+.field label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-bright);font-weight:700;margin-bottom:8px;}
+.field .desc{font-size:12px;color:var(--muted);margin-bottom:9px;line-height:1.5;}
+textarea{
+  width:100%;min-height:150px;resize:vertical;
+  background:rgba(5,13,32,.6);border:1px solid var(--line);border-radius:12px;
+  color:var(--cream);font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:1.7;
+  padding:13px 15px;
+}
+textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(74,159,224,.16);}
+.modal-foot{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#3a2600;
+  font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:700;font-size:16px;
+  padding:14px 26px;border-radius:13px;box-shadow:0 8px 22px rgba(240,165,0,.4);transition:.16s;
+}
+.btn-primary:hover{filter:brightness(1.07);transform:translateY(-1px);}
+.warn{font-size:12.5px;color:#ffb4a8;background:rgba(192,57,43,.16);border:1px solid rgba(192,57,43,.4);padding:9px 13px;border-radius:10px;display:none;}
+.warn.show{display:block;}
+.link-mini{background:none;border:none;color:var(--blue-soft);font-size:12.5px;text-decoration:underline;cursor:pointer;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;}
+
+/* finish banner */
+.finish{
+  grid-column:1/-1;text-align:center;
+  border:1px solid var(--gold);border-radius:18px;padding:24px;
+  background:radial-gradient(400px 160px at 50% 0%, rgba(240,165,0,.16), transparent 70%), rgba(5,13,32,.4);
+  display:none;animation:pop .5s ease both;
+}
+.finish.show{display:block;}
+.finish h2{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;font-weight:900;font-size:26px;color:var(--gold-bright);}
+.finish p{color:var(--muted);font-size:13.5px;margin-top:6px;}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:60;}
+
+.spinning #wheel{will-change:transform;}
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+<div class="toast" id="toast"></div>
+
+<header>
+  <div class="brand">
+    <div class="crest">🌐</div>
+    <div>
+      <h1>MUNA Country Draw</h1>
+      <div class="sub">Rotary District 9815 · Model UN Assembly 2026</div>
+    </div>
+  </div>
+  <div class="head-actions">
+    <div class="tag-counter">Drawn <b id="hc-done">0</b> / <span id="hc-total">11</span></div>
+    <button class="btn-ghost" id="btnSetup">⚙ Edit lists</button>
+    <button class="btn-ghost" id="btnReset">↺ Reset</button>
+  </div>
+</header>
+
+<div class="stage">
+
+  <!-- WHEEL -->
+  <div class="wheel-zone">
+    <div class="wheel-frame">
+      <div class="wheel-glow"></div>
+      <div class="pointer"></div>
+      <svg id="wheel" viewBox="0 0 100 100"></svg>
+      <div class="hub"><span>🕊️</span></div>
+    </div>
+  </div>
+
+  <!-- CONTROL PANEL -->
+  <div class="panel">
+    <div class="eyebrow">The Draw</div>
+
+    <div class="spotlight" id="spotlight">
+      <div class="role" id="sl-role">Next delegation</div>
+      <div class="school placeholder" id="sl-school">Press “Reveal Next School” to begin</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn-big btn-school" id="btnSchool">🎓 Reveal Next School</button>
+      <button class="btn-big btn-spin" id="btnSpin" disabled>🎡 Spin for Country</button>
+      <div class="row-min">
+        <button class="btn-ghost" id="btnUndo" disabled>↶ Undo last draw</button>
+      </div>
+    </div>
+
+    <div class="mini-stats">
+      <div class="mstat"><div class="n" id="ms-schools">0</div><div class="l">Schools left</div></div>
+      <div class="mstat gold"><div class="n" id="ms-countries">11</div><div class="l">Countries left</div></div>
+      <div class="mstat green"><div class="n" id="ms-matched">0</div><div class="l">Matched</div></div>
+    </div>
+  </div>
+
+  <!-- FINISH BANNER -->
+  <div class="finish" id="finish">
+    <h2>🏆 The draw is complete!</h2>
+    <p>Every delegation has been allocated a country. Scroll down for the full allocation list.</p>
+  </div>
+
+  <!-- ALLOCATION BOARD -->
+  <div class="board">
+    <div class="board-head">
+      <h2>Allocation Board</h2>
+      <span class="hint">Each locked-in match appears here in real time.</span>
+      <div class="board-export" id="boardExport">
+        <button class="btn-ghost" id="btnCopy">📋 Copy list</button>
+        <button class="btn-ghost" id="btnCsv">⬇ Download (CSV)</button>
+        <button class="btn-ghost" id="btnPrint">🖨 Print / PDF</button>
+      </div>
+    </div>
+    <div class="allocations" id="allocations"></div>
+    <div class="empty-board" id="emptyBoard">No matches yet — your allocations will appear here as you draw.</div>
+  </div>
+
+</div>
+
+<!-- ── SETUP MODAL ── -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Set up the draw</h2>
+    <p class="lead">Enter your school / team names below — one per line. The eleven MUNA countries are pre-loaded, but you can edit them too. Schools are revealed in random order during the draw, so the running sheet you paste here doesn’t affect fairness.</p>
+
+    <div class="field">
+      <label>School / Team names</label>
+      <div class="desc">One name per line. Add only as many teams as you have — the draw ends automatically when schools run out.</div>
+      <textarea id="schoolInput" placeholder="e.g.&#10;Bayside Secondary College&#10;St Andrew's Grammar&#10;Riverview High&#10;..."></textarea>
+      <button class="link-mini" id="loadExample">↳ Load 8 example school names (for testing)</button>
+    </div>
+
+    <div class="field">
+      <label>Countries (UN Member States)</label>
+      <div class="desc">One per line. Flags are added automatically for recognised names. Pre-loaded with the official MUNA 2026 list.</div>
+      <textarea id="countryInput" style="min-height:120px"></textarea>
+    </div>
+
+    <div class="warn" id="setupWarn"></div>
+
+    <div class="modal-foot">
+      <button class="btn-primary" id="btnStart">Begin the draw →</button>
+      <span style="font-size:12px;color:var(--muted)">Tip: share your full browser window in Zoom for the best view.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const FLAGS = {
+  "australia":"🇦🇺","china":"🇨🇳","india":"🇮🇳","indonesia":"🇮🇩","japan":"🇯🇵",
+  "kenya":"🇰🇪","nigeria":"🇳🇬","russia":"🇷🇺","türkiye":"🇹🇷","turkiye":"🇹🇷",
+  "turkey":"🇹🇷","uk":"🇬🇧","united kingdom":"🇬🇧","usa":"🇺🇸","united states":"🇺🇸",
+  "united states of america":"🇺🇸","u.s.a.":"🇺🇸"
+};
+const DEFAULT_COUNTRIES = ["Australia","China","India","Indonesia","Japan","Kenya","Nigeria","Russia","Türkiye","UK","USA"];
+const EXAMPLE_SCHOOLS = ["Bayside Secondary College","St Andrew's Grammar","Riverview High School","Marndoutta College","Highview Christian College","Eastern Coast Academy","Penbridge College","Westvale Secondary"];
+
+const PALETTE = ["#2d6fb0","#1f8a5b","#b8862a","#7a4fb0","#c0563a","#2f8f9a","#3f7fc9","#a04a8c","#5a8f3a","#c79324","#406a9e"];
+
+let countries = [];     // [{name, flag}]
+let schools   = [];     // remaining school names
+let results   = [];     // [{school, country, flag}]
+let current   = null;   // current school in spotlight
+let totalCountries = 0;
+let wheelRotation = 0;
+let isSpinning = false;
+
+/* ─────────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────────── */
+const $ = id => document.getElementById(id);
+function flagFor(name){ return FLAGS[name.trim().toLowerCase()] || "🏳️"; }
+function shuffleRandomIndex(arr){ return Math.floor(Math.random()*arr.length); }
+
+/* ─────────────────────────────────────────────
+   WHEEL RENDERING
+───────────────────────────────────────────── */
+function buildWheel(){
+  const wheel = $("wheel");
+  // reset rotation instantly (no visible spin) before redrawing
+  wheel.style.transition = "none";
+  wheelRotation = 0;
+  wheel.style.transform = "rotate(0deg)";
+  void wheel.offsetWidth; // reflow
+
+  const n = countries.length;
+  let svg = "";
+  if(n === 0){
+    wheel.innerHTML = `<circle cx="50" cy="50" r="49" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)"/>`;
+    return;
+  }
+  const seg = 360 / n;
+  const cx=50, cy=50, r=49;
+  for(let i=0;i<n;i++){
+    const start = i*seg, end = (i+1)*seg;
+    // angle measured clockwise from top (12 o'clock)
+    const a0 = (start-90)*Math.PI/180;
+    const a1 = (end-90)*Math.PI/180;
+    const x0 = cx + r*Math.cos(a0), y0 = cy + r*Math.sin(a0);
+    const x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+    const large = seg>180?1:0;
+    const fill = PALETTE[i % PALETTE.length];
+    svg += `<path d="M${cx},${cy} L${x0.toFixed(3)},${y0.toFixed(3)} A${r},${r} 0 ${large} 1 ${x1.toFixed(3)},${y1.toFixed(3)} Z" fill="${fill}" stroke="rgba(5,13,32,.55)" stroke-width="0.5"/>`;
+    // label
+    const mid = (start+end)/2;
+    const la = (mid-90)*Math.PI/180;
+    const lr = 33;
+    const lx = cx + lr*Math.cos(la), ly = cy + lr*Math.sin(la);
+    let rot = mid; if(mid>90 && mid<270) rot += 180; // keep text upright-ish
+    const c = countries[i];
+    svg += `<g transform="translate(${lx.toFixed(2)},${ly.toFixed(2)}) rotate(${rot.toFixed(1)})">
+      <text x="0" y="-1.5" text-anchor="middle" font-size="6" font-family="system-ui,Helvetica,Arial,sans-serif">${c.flag}</text>
+      <text x="0" y="4" text-anchor="middle" font-size="2.9" fill="#fff" font-weight="700" font-family="system-ui,Helvetica,Arial,sans-serif" style="letter-spacing:.1px">${escapeXml(c.name)}</text>
+    </g>`;
+  }
+  // outer ring
+  svg += `<circle cx="50" cy="50" r="49" fill="none" stroke="var(--gold)" stroke-width="1.1" opacity="0.8"/>`;
+  wheel.innerHTML = svg;
+  // restore transition for the next real spin
+  requestAnimationFrame(()=>{ wheel.style.transition = "transform 5.4s cubic-bezier(.12,.66,.07,1)"; });
+}
+function escapeXml(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ─────────────────────────────────────────────
+   DRAW LOGIC
+───────────────────────────────────────────── */
+function revealSchool(){
+  if(isSpinning || schools.length===0 || current) return;
+  const idx = shuffleRandomIndex(schools);
+  current = schools.splice(idx,1)[0];
+  const sl = $("spotlight"), school = $("sl-school");
+  $("sl-role").textContent = "Now drawing for";
+  school.textContent = current;
+  school.className = "school";
+  sl.classList.add("lit");
+  $("btnSchool").disabled = true;
+  $("btnSpin").disabled = false;
+  updateStats();
+}
+
+function spin(){
+  if(isSpinning || !current || countries.length===0) return;
+  isSpinning = true;
+  $("btnSpin").disabled = true;
+  $("btnUndo").disabled = true;
+  document.body.classList.add("spinning");
+
+  const n = countries.length;
+  const seg = 360/n;
+  const winIdx = Math.floor(Math.random()*n);
+  // center angle of winning segment (clockwise from top)
+  const center = winIdx*seg + seg/2;
+  // jitter inside segment for natural feel
+  const jitter = (Math.random()-0.5) * seg * 0.6;
+  const turns = 5 + Math.floor(Math.random()*3); // 5-7 full turns
+  // to bring 'center' to the top pointer (0deg): rotate by (360 - center)
+  const target = turns*360 + (360 - (center + jitter));
+  wheelRotation = target;
+  $("wheel").style.transform = `rotate(${wheelRotation}deg)`;
+
+  const wheel = $("wheel");
+  const onEnd = ()=>{
+    wheel.removeEventListener("transitionend", onEnd);
+    finishSpin(winIdx);
+  };
+  wheel.addEventListener("transitionend", onEnd);
+}
+
+function finishSpin(winIdx){
+  const won = countries[winIdx];
+  // lock the result
+  results.push({school: current, country: won.name, flag: won.flag});
+  countries.splice(winIdx,1);
+
+  // reveal verdict in spotlight
+  const sl = $("spotlight");
+  $("sl-role").textContent = current + " will represent";
+  const school = $("sl-school");
+  school.outerHTML = `<div class="verdict" id="sl-school"><span class="fl">${won.flag}</span>${escapeXml(won.name)}</div>`;
+  burstConfetti();
+
+  isSpinning = false;
+  document.body.classList.remove("spinning");
+  current = null;
+
+  renderBoard();
+  buildWheel();          // redraw without the won country (resets rotation invisibly)
+  updateStats();
+
+  $("btnUndo").disabled = false;
+
+  if(schools.length===0 || countries.length===0){
+    finishDraw();
+  } else {
+    $("btnSchool").disabled = false;
+  }
+}
+
+function undo(){
+  if(isSpinning || results.length===0) return;
+  const last = results.pop();
+  // put the country back, in original-ish position (end is fine — order on wheel is cosmetic)
+  countries.push({name:last.country, flag:last.flag});
+  // put the school back
+  schools.push(last.school);
+  current = null;
+
+  // reset spotlight
+  $("sl-role").textContent = "Next delegation";
+  const sl = $("spotlight");
+  sl.classList.remove("lit");
+  const node = $("sl-school");
+  node.outerHTML = `<div class="school placeholder" id="sl-school">Press “Reveal Next School” to begin</div>`;
+
+  $("finish").classList.remove("show");
+  $("btnSchool").disabled = false;
+  $("btnSpin").disabled = true;
+  $("btnUndo").disabled = results.length===0;
+
+  buildWheel();
+  renderBoard();
+  updateStats();
+}
+
+function finishDraw(){
+  $("btnSchool").disabled = true;
+  $("btnSpin").disabled = true;
+  $("finish").classList.add("show");
+  setTimeout(burstConfetti, 150);
+  setTimeout(burstConfetti, 600);
+}
+
+/* ─────────────────────────────────────────────
+   RENDER
+───────────────────────────────────────────── */
+function renderBoard(){
+  const wrap = $("allocations");
+  const empty = $("emptyBoard");
+  const exp = $("boardExport");
+  exp.classList.toggle("ready", results.length>0);
+  if(results.length===0){ wrap.innerHTML=""; empty.style.display="block"; return; }
+  empty.style.display="none";
+  wrap.innerHTML = results.map((r,i)=>`
+    <div class="alloc">
+      <div class="fl">${r.flag}</div>
+      <div class="meta">
+        <div class="country">${escapeXml(r.country)}</div>
+        <div class="school">${escapeXml(r.school)}</div>
+      </div>
+      <div class="num">${String(i+1).padStart(2,"0")}</div>
+    </div>`).join("");
+}
+
+function updateStats(){
+  $("ms-schools").textContent   = schools.length + (current?1:0);
+  $("ms-countries").textContent = countries.length;
+  $("ms-matched").textContent   = results.length;
+  $("hc-done").textContent      = results.length;
+  $("hc-total").textContent     = totalCountries;
+}
+
+/* ─────────────────────────────────────────────
+   CONFETTI
+───────────────────────────────────────────── */
+const cv = $("confetti"), cx2 = cv.getContext("2d");
+let parts = [], rafOn = false;
+function sizeCanvas(){ cv.width=innerWidth; cv.height=innerHeight; }
+sizeCanvas(); addEventListener("resize", sizeCanvas);
+function burstConfetti(){
+  const cols = ["#ffcb47","#f0a500","#4a9fe0","#8fc4ee","#3fbf7f","#fff"];
+  for(let i=0;i<120;i++){
+    parts.push({
+      x: innerWidth*0.5 + (Math.random()-0.5)*220,
+      y: innerHeight*0.32,
+      vx:(Math.random()-0.5)*9, vy:Math.random()*-9-3,
+      g:0.25+Math.random()*0.18, s:5+Math.random()*7,
+      rot:Math.random()*360, vr:(Math.random()-0.5)*16,
+      col:cols[Math.floor(Math.random()*cols.length)], life:90+Math.random()*40
+    });
+  }
+  if(!rafOn){ rafOn=true; requestAnimationFrame(animate); }
+}
+function animate(){
+  cx2.clearRect(0,0,cv.width,cv.height);
+  parts.forEach(p=>{ p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.life--; });
+  parts = parts.filter(p=>p.life>0 && p.y<cv.height+40);
+  parts.forEach(p=>{
+    cx2.save(); cx2.translate(p.x,p.y); cx2.rotate(p.rot*Math.PI/180);
+    cx2.fillStyle=p.col; cx2.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.55); cx2.restore();
+  });
+  if(parts.length){ requestAnimationFrame(animate); } else { rafOn=false; cx2.clearRect(0,0,cv.width,cv.height); }
+}
+
+/* ─────────────────────────────────────────────
+   SETUP / RESET
+───────────────────────────────────────────── */
+function openSetup(){
+  $("countryInput").value = (countries.length? countries.map(c=>c.name):DEFAULT_COUNTRIES).join("\n");
+  if(!$("schoolInput").value.trim() && results.length===0){
+    // keep whatever was there
+  }
+  $("overlay").classList.remove("hidden");
+}
+function parseList(text){ return text.split("\n").map(s=>s.trim()).filter(Boolean); }
+
+function startDraw(){
+  const schoolNames  = parseList($("schoolInput").value);
+  const countryNames = parseList($("countryInput").value);
+  const warn = $("setupWarn");
+  warn.classList.remove("show");
+
+  if(countryNames.length < 2){ warn.textContent="Please enter at least two countries."; warn.classList.add("show"); return; }
+  if(schoolNames.length === 0){ warn.textContent="Please enter at least one school / team name."; warn.classList.add("show"); return; }
+  if(schoolNames.length > countryNames.length){
+    warn.textContent = `You have ${schoolNames.length} schools but only ${countryNames.length} countries. There aren’t enough countries for every team — add more countries or remove some schools.`;
+    warn.classList.add("show"); return;
+  }
+
+  countries = countryNames.map(n=>({name:n, flag:flagFor(n)}));
+  schools   = schoolNames.slice();
+  totalCountries = schoolNames.length; // total draws = number of schools
+  results = []; current = null;
+
+  $("overlay").classList.add("hidden");
+  $("finish").classList.remove("show");
+  $("sl-role").textContent="Next delegation";
+  const node=$("sl-school");
+  node.outerHTML=`<div class="school placeholder" id="sl-school">Press “Reveal Next School” to begin</div>`;
+  $("spotlight").classList.remove("lit");
+  $("btnSchool").disabled=false;
+  $("btnSpin").disabled=true;
+  $("btnUndo").disabled=true;
+
+  buildWheel();
+  renderBoard();
+  updateStats();
+}
+
+function resetAll(){
+  if(results.length && !confirm("Reset the entire draw? All allocations will be cleared.")) return;
+  results=[]; current=null;
+  openSetup();
+}
+
+/* ─────────────────────────────────────────────
+   EXPORT
+───────────────────────────────────────────── */
+function dateStamp(){
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function showToast(msg){
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+function plainList(){
+  // human-friendly text: "01.  Country  —  School"
+  return results.map((r,i)=>
+    `${String(i+1).padStart(2,"0")}.  ${r.country}  —  ${r.school}`
+  ).join("\n");
+}
+function copyList(){
+  if(results.length===0) return;
+  const header = "MUNA 2026 — Country Draw · Rotary District 9815\nDraw date: " + dateStamp() + "\n\n";
+  const text = header + plainList();
+  const done = ()=>showToast("✓ Allocation list copied to clipboard");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text, done));
+  } else { fallbackCopy(text, done); }
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }catch(e){ showToast("Couldn't copy automatically — please copy manually"); }
+  document.body.removeChild(ta);
+}
+function downloadCsv(){
+  if(results.length===0) return;
+  const esc = v => '"' + String(v).replace(/"/g,'""') + '"';
+  const rows = [["Order","Country","School / Team"]]
+    .concat(results.map((r,i)=>[i+1, r.country, r.school]));
+  const csv = rows.map(row => row.map(esc).join(",")).join("\r\n");
+  // BOM so Excel reads accents (e.g. Türkiye) correctly
+  const blob = new Blob(["\uFEFF"+csv], {type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "MUNA-2026-allocations-" + dateStamp() + ".csv";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("✓ CSV downloaded");
+}
+function printList(){
+  if(results.length===0) return;
+  window.print();
+}
+
+/* ─────────────────────────────────────────────
+   WIRE UP
+───────────────────────────────────────────── */
+$("btnSchool").addEventListener("click", revealSchool);
+$("btnSpin").addEventListener("click", spin);
+$("btnUndo").addEventListener("click", undo);
+$("btnSetup").addEventListener("click", openSetup);
+$("btnReset").addEventListener("click", resetAll);
+$("btnStart").addEventListener("click", startDraw);
+$("btnCopy").addEventListener("click", copyList);
+$("btnCsv").addEventListener("click", downloadCsv);
+$("btnPrint").addEventListener("click", printList);
+$("loadExample").addEventListener("click", ()=>{ $("schoolInput").value = EXAMPLE_SCHOOLS.join("\n"); });
+
+// initialise countries display + wheel preview behind modal
+countries = DEFAULT_COUNTRIES.map(n=>({name:n, flag:flagFor(n)}));
+totalCountries = DEFAULT_COUNTRIES.length;
+buildWheel();
+updateStats();
+openSetup();
+</script>
+</body>
+</html>
