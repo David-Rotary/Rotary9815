@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treasurer Hub — Rotary District 9815</title>
+</head>
+<body style="margin:0;background:#eef3fa;">
+
+<!-- ============================================================= -->
+<!-- ROTARY DISTRICT 9815 — TREASURER HUB                          -->
+<!-- Self-contained. Paste this entire #rtr-hub block into a       -->
+<!-- ClubRunner custom/HTML page. All CSS is scoped to #rtr-hub.   -->
+<!-- ============================================================= -->
+<div id="rtr-hub">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap');
+
+#rtr-hub{
+  --navy:#17458F; --twilight:#0d2c5e; --azure:#0067C8; --sky:#00A2E0;
+  --gold:#F7A81B; --gold-d:#c8870b; --ink:#1a2a47; --mute:#5b6b85;
+  --line:#e1e9f3; --tint:#eef3fa; --tint2:#f5f8fc; --white:#fff;
+  --display:'Fraunces',Georgia,serif; --body:'Hanken Grotesk',system-ui,sans-serif; --script:'Dancing Script',cursive;
+  font-family:var(--body); color:var(--ink); line-height:1.55;
+  max-width:1120px; margin:0 auto; padding:0 18px 70px;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+#rtr-hub *,#rtr-hub *::before,#rtr-hub *::after{box-sizing:border-box;}
+#rtr-hub p{margin:0 0 .8em;}
+#rtr-hub a{color:var(--azure); text-decoration:none; font-weight:600;}
+#rtr-hub a:hover{text-decoration:underline;}
+#rtr-hub h1,#rtr-hub h2,#rtr-hub h3{font-family:var(--display); color:var(--navy); margin:0; line-height:1.1;}
+
+/* ---------- hero ---------- */
+#rtr-hub .hero{
+  position:relative; margin:22px 0 0; padding:46px 40px 40px; border-radius:22px; overflow:hidden;
+  background:radial-gradient(120% 140% at 88% -10%, #1f5bb0 0%, var(--navy) 42%, var(--twilight) 100%);
+  color:#fff; box-shadow:0 18px 40px -22px rgba(13,44,94,.6);
+}
+#rtr-hub .hero::after{content:"";position:absolute;right:-70px;top:-90px;width:280px;height:280px;border-radius:50%;background:rgba(0,162,224,.18);}
+#rtr-hub .badge{
+  width:74px;height:74px;border-radius:50%;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px -6px rgba(0,0,0,.45);margin-bottom:18px;
+}
+#rtr-hub .eyebrow{font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--sky);text-transform:uppercase;margin-bottom:10px;}
+#rtr-hub .hero h1{color:#fff;font-size:clamp(38px,6vw,58px);font-weight:600;}
+#rtr-hub .hero .script{font-family:var(--script);color:var(--gold);font-size:clamp(24px,3.6vw,32px);font-weight:700;display:block;margin-top:4px;}
+#rtr-hub .hero .tag{max-width:640px;margin-top:16px;font-size:18px;color:#d7e6f9;font-weight:400;}
+#rtr-hub .hero .role{display:inline-block;margin-top:18px;padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:600;letter-spacing:.04em;}
+#rtr-hub .rainbow{height:6px;margin:-6px auto 0;max-width:1120px;background:linear-gradient(90deg,#F7A81B,#e8602c,#c8326b,#7a3b9e,#0067C8,#00A2E0,#37b39b);}
+
+/* ---------- progress + finder ---------- */
+#rtr-hub .toolbar{margin:26px 0 8px;}
+#rtr-hub .prog{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+#rtr-hub .prog-label{font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap;letter-spacing:.02em;}
+#rtr-hub .prog-track{flex:1;height:12px;border-radius:999px;background:var(--line);overflow:hidden;}
+#rtr-hub .prog-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--gold-d));transition:width .5s ease;}
+#rtr-hub .prog-pct{font-size:14px;font-weight:700;color:var(--gold-d);min-width:42px;text-align:right;}
+#rtr-hub .chips{display:flex;flex-wrap:wrap;gap:8px;}
+#rtr-hub .chip{font-family:var(--body);font-size:13px;font-weight:600;color:var(--navy);background:var(--white);border:1px solid var(--line);
+  border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+#rtr-hub .chip:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* ---------- section headings ---------- */
+#rtr-hub .sec{margin-top:42px;}
+#rtr-hub .sec-eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sky);margin-bottom:6px;}
+#rtr-hub .sec-title{font-size:clamp(24px,3.4vw,30px);font-weight:600;}
+#rtr-hub .sec-intro{color:var(--mute);max-width:760px;margin-top:8px;}
+
+/* ---------- steps ---------- */
+#rtr-hub .steps{margin-top:18px;display:flex;flex-direction:column;gap:14px;}
+#rtr-hub .step{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 26px -22px rgba(13,44,94,.5);}
+#rtr-hub .step.complete{border-color:var(--gold);}
+#rtr-hub .step-head{width:100%;display:flex;align-items:center;gap:16px;padding:18px 20px;background:none;border:0;cursor:pointer;text-align:left;font-family:var(--body);}
+#rtr-hub .num{flex:none;width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:var(--display);font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center;}
+#rtr-hub .step.complete .num{background:var(--navy);color:#fff;}
+#rtr-hub .step-titles{flex:1;min-width:0;}
+#rtr-hub .step-title{display:block;font-family:var(--display);font-weight:600;font-size:18px;color:var(--navy);}
+#rtr-hub .step-sub{display:block;font-size:13px;color:var(--mute);margin-top:1px;}
+#rtr-hub .done-pill{flex:none;font-size:12px;font-weight:700;color:var(--gold-d);background:var(--tint);border-radius:999px;padding:3px 10px;}
+#rtr-hub .step.complete .done-pill{color:#fff;background:var(--gold);}
+#rtr-hub .chev{flex:none;color:var(--azure);font-size:22px;line-height:1;transform:rotate(90deg);transition:transform .3s ease;}
+#rtr-hub .step.open .chev{transform:rotate(-90deg);}
+#rtr-hub .step-body{max-height:0;overflow:hidden;transition:max-height .38s ease;}
+#rtr-hub .step.open .step-body{max-height:1400px;}
+#rtr-hub .step-inner{padding:2px 20px 22px 78px;}
+#rtr-hub .lead{color:var(--ink);}
+#rtr-hub .facts{background:var(--tint);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:11px 15px;font-size:14px;color:var(--ink);margin:4px 0 14px;}
+#rtr-hub .facts b{color:var(--navy);}
+#rtr-hub .checklist{list-style:none;margin:0 0 12px;padding:0;}
+#rtr-hub .checklist li{margin:0 0 9px;}
+#rtr-hub .checklist label{display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-size:15px;}
+#rtr-hub .checklist input{appearance:none;-webkit-appearance:none;flex:none;width:21px;height:21px;margin-top:1px;border:2px solid var(--line);border-radius:6px;background:var(--white);cursor:pointer;position:relative;transition:background .15s,border-color .15s;}
+#rtr-hub .checklist input:checked{background:var(--navy);border-color:var(--navy);}
+#rtr-hub .checklist input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+#rtr-hub .checklist input:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+#rtr-hub .checklist input:checked + span{color:var(--mute);}
+#rtr-hub .step-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;}
+#rtr-hub .step-links a::before{content:"\2197  ";font-weight:700;}
+
+/* ---------- year planner ---------- */
+#rtr-hub .quarters{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;}
+#rtr-hub .q{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 10px 26px -22px rgba(13,44,94,.5);}
+#rtr-hub .q-tag{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--gold-d);text-transform:uppercase;}
+#rtr-hub .q h3{font-size:18px;margin:3px 0 10px;}
+#rtr-hub .q ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink);}
+#rtr-hub .q li{margin-bottom:6px;}
+
+/* ---------- health check ---------- */
+#rtr-hub .check{background:linear-gradient(135deg,var(--navy),var(--twilight));color:#fff;border-radius:20px;padding:34px 34px 30px;margin-top:42px;}
+#rtr-hub .check h2{color:#fff;}
+#rtr-hub .check .sec-eyebrow{color:var(--gold);}
+#rtr-hub .check .sec-intro{color:#cfe0f5;}
+#rtr-hub .hc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;margin:20px 0 6px;}
+#rtr-hub .hc-grid label{display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-size:14.5px;color:#eaf2fc;}
+#rtr-hub .hc-grid input{appearance:none;-webkit-appearance:none;flex:none;width:21px;height:21px;margin-top:1px;border:2px solid rgba(255,255,255,.45);border-radius:6px;background:rgba(255,255,255,.08);cursor:pointer;position:relative;}
+#rtr-hub .hc-grid input:checked{background:var(--gold);border-color:var(--gold);}
+#rtr-hub .hc-grid input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid var(--navy);border-width:0 2px 2px 0;transform:rotate(45deg);}
+#rtr-hub .hc-grid input:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+#rtr-hub .hc-result{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+#rtr-hub .hc-score{font-family:var(--display);font-weight:700;font-size:30px;color:var(--gold);white-space:nowrap;}
+#rtr-hub .hc-meter-wrap{flex:1;min-width:200px;}
+#rtr-hub .hc-meter-track{height:12px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden;}
+#rtr-hub .hc-meter{height:100%;width:0;border-radius:999px;background:var(--gold);transition:width .5s ease;}
+#rtr-hub .hc-msg{margin-top:10px;font-size:15px;font-weight:600;color:#fff;}
+#rtr-hub .hc-msg.low{color:#ffd9a0;}
+#rtr-hub .hc-msg.mid{color:#bfe3ff;}
+#rtr-hub .hc-msg.high{color:#b9f0c9;}
+
+/* ---------- resources ---------- */
+#rtr-hub .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;}
+#rtr-hub .res{display:block;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 10px 26px -24px rgba(13,44,94,.5);transition:transform .15s,box-shadow .15s;}
+#rtr-hub .res:hover{transform:translateY(-2px);box-shadow:0 16px 30px -22px rgba(13,44,94,.6);text-decoration:none;}
+#rtr-hub .res .r-src{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-d);}
+#rtr-hub .res .r-title{font-family:var(--display);font-weight:600;font-size:16px;color:var(--navy);margin:3px 0 4px;}
+#rtr-hub .res .r-desc{font-size:13px;color:var(--mute);font-weight:400;}
+
+/* ---------- footer ---------- */
+#rtr-hub .foot{margin-top:40px;padding:22px 24px;background:var(--tint2);border:1px solid var(--line);border-radius:16px;font-size:13px;color:var(--mute);}
+#rtr-hub .foot b{color:var(--navy);}
+#rtr-hub .foot .contact{margin-top:8px;font-size:14px;color:var(--ink);}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  #rtr-hub .quarters{grid-template-columns:1fr 1fr;}
+  #rtr-hub .res-grid{grid-template-columns:1fr 1fr;}
+  #rtr-hub .hc-grid{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  #rtr-hub .hero{padding:34px 22px 30px;}
+  #rtr-hub .step-inner{padding-left:20px;}
+  #rtr-hub .quarters,#rtr-hub .res-grid{grid-template-columns:1fr;}
+  #rtr-hub .prog-label{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  #rtr-hub *{transition:none !important;}
+}
+</style>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="badge" aria-hidden="true">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2 3 6v2h18V6l-9-4Z" fill="#17458F"/>
+      <rect x="4.5" y="9.5" width="2.3" height="7" rx=".4" fill="#17458F"/>
+      <rect x="10.85" y="9.5" width="2.3" height="7" rx=".4" fill="#17458F"/>
+      <rect x="17.2" y="9.5" width="2.3" height="7" rx=".4" fill="#17458F"/>
+      <rect x="3" y="17.4" width="18" height="2.2" rx=".5" fill="#17458F"/>
+      <rect x="2.2" y="20.2" width="19.6" height="1.8" rx=".6" fill="#17458F"/>
+    </svg>
+  </div>
+  <div class="eyebrow">Club Finance &middot; Rotary District 9815</div>
+  <h1>Treasurer Hub<span class="script">fund the work, the right way</span></h1>
+  <p class="tag">A guided resource for club treasurers in Victoria — organise your finances, hold the right working capital, stay compliant, and launch strong community projects with confidence.</p>
+  <span class="role">For Club Treasurers &amp; Finance teams</span>
+</header>
+<div class="rainbow"></div>
+
+<!-- TOOLBAR: progress + quick find -->
+<div class="toolbar">
+  <div class="prog">
+    <span class="prog-label">Your progress</span>
+    <span class="prog-track"><span class="prog-fill" id="rtr-progress-fill"></span></span>
+    <span class="prog-pct" id="rtr-progress-pct">0%</span>
+  </div>
+  <div class="chips">
+    <button class="chip" data-target="step-1">Accounts</button>
+    <button class="chip" data-target="step-2">Budget</button>
+    <button class="chip" data-target="step-3">Reserves</button>
+    <button class="chip" data-target="step-4">Compliance</button>
+    <button class="chip" data-target="step-5">Fundraising</button>
+    <button class="chip" data-target="step-6">Trading income</button>
+    <button class="chip" data-target="step-7">Tax-deductible giving</button>
+    <button class="chip" data-target="step-8">Controls &amp; handover</button>
+  </div>
+</div>
+
+<!-- STEPS -->
+<section class="sec">
+  <div class="sec-eyebrow">The Treasurer's playbook</div>
+  <h2 class="sec-title">Eight steps to a financially strong club</h2>
+  <p class="sec-intro">Work through each step and tick the actions as you complete them. Together they build the financial footing that lets your club launch projects from strength, not from scratch.</p>
+
+  <div class="steps">
+
+    <!-- 1 -->
+    <article class="step" id="step-1">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">1</span>
+        <span class="step-titles"><span class="step-title">Set up the accounts</span><span class="step-sub">Keep administration and charitable money apart</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Separating funds is the foundation of good club finance — it's a Rotary requirement and it protects your donors. Operating money (dues, meals) and charitable money (donations, fundraising) must never mix.</p>
+        <div class="facts"><b>Why it matters:</b> money raised for a particular cause must actually be spent on that cause — that's both Rotary policy and the law in Victoria.</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Maintain a separate <b>Administration</b> account (dues, meals, running costs)</span></label></li>
+          <li><label><input type="checkbox"><span>Maintain a separate <b>Charitable / Project</b> account (donations, fundraising, project spend)</span></label></li>
+          <li><label><input type="checkbox"><span>Add separate sub-accounts for major appeals where it aids clarity</span></label></li>
+          <li><label><input type="checkbox"><span>Never subsidise projects from dues, or admin from donations</span></label></li>
+          <li><label><input type="checkbox"><span>Record which funds are <b>unrestricted</b> vs <b>restricted</b> to a donor or appeal</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 2 -->
+    <article class="step" id="step-2">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">2</span>
+        <span class="step-titles"><span class="step-title">Build the budget</span><span class="step-sub">Run admin to break-even; plan the project account for impact</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Set the year's budget before it starts, ideally led by the President-Elect with the board. The administration account should aim to break even; the charitable account is where your project working capital lives.</p>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Estimate admin income (subscriptions &times; members, meeting and function fees)</span></label></li>
+          <li><label><input type="checkbox"><span>Estimate admin costs (RI &amp; District dues, meetings, insurance, administration)</span></label></li>
+          <li><label><input type="checkbox"><span>Set the admin budget to <b>break-even</b></span></label></li>
+          <li><label><input type="checkbox"><span>Forecast project income (fundraising, grants, donations) and planned spend</span></label></li>
+          <li><label><input type="checkbox"><span>Get board approval, then review budget vs actuals every month</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 3 -->
+    <article class="step" id="step-3">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">3</span>
+        <span class="step-titles"><span class="step-title">Reserves &amp; working capital</span><span class="step-sub">The policy that lets you launch projects with confidence</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">A written reserves policy is what gives the club both the confidence and the cash to start projects. The ACNC's position: a reasonable reserve is good practice, there's no universal level, and your board decides what suits the club's risks.</p>
+        <div class="facts"><b>Key point:</b> funds quarantined for a specific donor or appeal are <b>restricted</b> and don't count as free reserves — only <b>unrestricted</b> money can seed your next project. You can hold a surplus, but not hoard it indefinitely.</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Adopt a one-page <b>reserves policy</b> approved by the board</span></label></li>
+          <li><label><input type="checkbox"><span>Hold an <b>operating reserve</b> (boards often set this as a number of months of running costs)</span></label></li>
+          <li><label><input type="checkbox"><span>Hold an unrestricted <b>project float</b> so you can start work and replenish it later</span></label></li>
+          <li><label><input type="checkbox"><span>Keep restricted (donor / appeal) funds clearly separate from reserves</span></label></li>
+          <li><label><input type="checkbox"><span>Review the reserves level at least once a year</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 4 -->
+    <article class="step" id="step-4">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">4</span>
+        <span class="step-titles"><span class="step-title">Stay compliant in Victoria</span><span class="step-sub">Incorporated association, CAV and ACNC obligations</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Most clubs are <b>incorporated associations</b> under the Associations Incorporation Reform Act 2012 (Vic), regulated by Consumer Affairs Victoria. If your club is registered with the ACNC, you generally report to the ACNC instead of duplicating to CAV.</p>
+        <div class="facts"><b>Reporting tiers</b> now align with ACNC charity sizes — small (under $500k), medium ($500k&ndash;under $3m) and large ($3m+) — for the financial year ending on or after 1 July 2024. Larger clubs face review or audit requirements.</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Confirm your incorporation status and current <b>reporting tier</b></span></label></li>
+          <li><label><input type="checkbox"><span>Keep proper accounting records throughout the year</span></label></li>
+          <li><label><input type="checkbox"><span>Present financial statements to members at the <b>AGM</b></span></label></li>
+          <li><label><input type="checkbox"><span>Lodge the annual statement with CAV (or the AIS with the ACNC if registered)</span></label></li>
+          <li><label><input type="checkbox"><span>Arrange the review or audit your tier requires</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 5 -->
+    <article class="step" id="step-5">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">5</span>
+        <span class="step-titles"><span class="step-title">Fundraise legally</span><span class="step-sub">Top up project capital under the Fundraising Act 1998 (Vic)</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Public fundraising is governed by the Fundraising Act 1998 (Vic) and administered by Consumer Affairs Victoria. You must register as a fundraiser unless you qualify for an exemption.</p>
+        <div class="facts"><b>Common exemption:</b> raising under $20,000 gross a year, using only unpaid volunteers, with nobody paid to fundraise. ACNC-registered charities simply <b>notify</b> CAV of their intention to fundraise rather than registering separately.</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Check whether you must register or can rely on an exemption</span></label></li>
+          <li><label><input type="checkbox"><span>If ACNC-registered, lodge a notice of intention to fundraise with CAV</span></label></li>
+          <li><label><input type="checkbox"><span>Disclose the cause and keep accurate fundraising records</span></label></li>
+          <li><label><input type="checkbox"><span>Apply proceeds to the nominated beneficiaries (expect scrutiny if under 35% gets through)</span></label></li>
+          <li><label><input type="checkbox"><span>Check extra approvals for raffles/gaming and for distributing funds overseas</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 6 -->
+    <article class="step" id="step-6">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">6</span>
+        <span class="step-titles"><span class="step-title">Trading &amp; fee-for-service income</span><span class="step-sub">Hire fees and paid services &mdash; and how they differ from fundraising</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Income from hiring out equipment (like art screens) or charging for a service is <b>commercial trading income</b>, not a fundraising appeal &mdash; the hirer pays a fair rate and receives value in return. As an incorporated association you can trade where it relates to your purpose; you simply can't pay profits to members.</p>
+        <div class="facts"><b>Two things to get right:</b> because it's commercial, the <b>$20,000 fundraising-exemption threshold doesn't apply</b> to it &mdash; but keep it a clean hire (invoice for a service, not a "donation to Rotary"), or it can be drawn into the Fundraising Act. And watch the <b>GST line</b>: an NFP must register for GST once its commercial turnover reaches <b>$150,000</b> in a rolling 12 months (gifts and donations don't count).</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Treat hire / service income as <b>commercial trading income</b>, recorded as its own line</span></label></li>
+          <li><label><input type="checkbox"><span>Charge a fair market rate and <b>invoice</b> for the service &mdash; not a "donation"</span></label></li>
+          <li><label><input type="checkbox"><span>Bank it in the charitable / project account and apply it to your purposes</span></label></li>
+          <li><label><input type="checkbox"><span>Track total commercial turnover against the <b>$150,000 NFP GST threshold</b></span></label></li>
+          <li><label><input type="checkbox"><span>Build any surplus into your reserves / project float under your reserves policy</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 7 -->
+    <article class="step" id="step-7">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">7</span>
+        <span class="step-titles"><span class="step-title">Unlock tax-deductible giving</span><span class="step-sub">Use Rotary's DGR funds to attract bigger donations</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">A club account usually can't give donors a tax deduction. Route eligible gifts through Rotary's DGR funds, run by Rotary Australia World Community Service (RAWCS) — that unlocks larger gifts, corporate and ancillary-fund money, plus project accounting and compliance.</p>
+        <div class="facts"><b>For local projects:</b> the <b>Rotary Australia Benevolent Society (RABS)</b> holds DGR status for Australian community projects; the <b>Overseas Aid Fund</b> covers international work. Matched compassionate grants are also available.</div>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Register eligible projects with RAWCS for tax-deductible donations</span></label></li>
+          <li><label><input type="checkbox"><span>Use <b>RABS</b> for domestic community projects, the Overseas Aid Fund for international</span></label></li>
+          <li><label><input type="checkbox"><span>Promote tax-deductible giving to donors, corporates and ancillary funds</span></label></li>
+          <li><label><input type="checkbox"><span>Explore matched / compassionate grant opportunities</span></label></li>
+          <li><label><input type="checkbox"><span>Consider Rotary Foundation district &amp; global grants for larger projects</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+    <!-- 7 -->
+    <article class="step" id="step-8">
+      <button class="step-head" aria-expanded="false">
+        <span class="num">8</span>
+        <span class="step-titles"><span class="step-title">Controls &amp; handover</span><span class="step-sub">Protect the club and make next year's handover painless</span></span>
+        <span class="done-pill">0/5</span><span class="chev">&rsaquo;</span>
+      </button>
+      <div class="step-body"><div class="step-inner">
+        <p class="lead">Sound controls protect the club's money and its people — and they make the annual handover to the next treasurer simple rather than stressful.</p>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Require board approval for payments and use <b>two signatories</b></span></label></li>
+          <li><label><input type="checkbox"><span>Reconcile accounts monthly and report to the board</span></label></li>
+          <li><label><input type="checkbox"><span>Arrange the annual review or audit appropriate to your tier</span></label></li>
+          <li><label><input type="checkbox"><span>Store records in the District's Microsoft 365 / SharePoint, not a personal drive</span></label></li>
+          <li><label><input type="checkbox"><span>Hand over via <b>role-based</b> access (treasurer@&hellip;), never a personal login</span></label></li>
+        </ul>
+      </div></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- YEAR PLANNER -->
+<section class="sec">
+  <div class="sec-eyebrow">The Rotary year</div>
+  <h2 class="sec-title">A treasurer's year at a glance</h2>
+  <p class="sec-intro">A simple rhythm for the July&ndash;June Rotary year, so nothing important gets left to the last minute.</p>
+  <div class="quarters">
+    <div class="q">
+      <div class="q-tag">Jul &ndash; Sep</div><h3>Start strong</h3>
+      <ul><li>Take handover and confirm bank access &amp; signatories</li><li>Adopt the board-approved budget</li><li>Put the reserves policy in place</li></ul>
+    </div>
+    <div class="q">
+      <div class="q-tag">Oct &ndash; Dec</div><h3>Steady rhythm</h3>
+      <ul><li>Monthly reconciliations &amp; board reports</li><li>Mid-year financial review</li><li>Check fundraising registration / notices</li></ul>
+    </div>
+    <div class="q">
+      <div class="q-tag">Jan &ndash; Mar</div><h3>Fund the projects</h3>
+      <ul><li>Track project funding vs plan</li><li>Plan major fundraisers</li><li>Confirm RAWCS / DGR registration for projects</li></ul>
+    </div>
+    <div class="q">
+      <div class="q-tag">Apr &ndash; Jun</div><h3>Close &amp; hand over</h3>
+      <ul><li>Prepare year-end statements</li><li>Arrange review / audit and AGM financials</li><li>Document a clean handover</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH CHECK -->
+<section class="check sec" id="rtr-healthcheck">
+  <div class="sec-eyebrow">2-minute self-assessment</div>
+  <h2 class="sec-title">Is your club financially ready?</h2>
+  <p class="sec-intro">Tick everything that's already true for your club. Your score updates as you go.</p>
+  <div class="hc-grid">
+    <label><input type="checkbox"><span>We keep administration and charitable funds in separate accounts</span></label>
+    <label><input type="checkbox"><span>We have a board-approved annual budget</span></label>
+    <label><input type="checkbox"><span>We have a written reserves policy</span></label>
+    <label><input type="checkbox"><span>We hold an unrestricted project float we can deploy quickly</span></label>
+    <label><input type="checkbox"><span>We know our incorporation status and reporting tier</span></label>
+    <label><input type="checkbox"><span>Our fundraising is registered or properly exempt</span></label>
+    <label><input type="checkbox"><span>We use RAWCS / RABS for tax-deductible project donations</span></label>
+    <label><input type="checkbox"><span>Payments need board approval and two signatories</span></label>
+    <label><input type="checkbox"><span>We track commercial / trading turnover against the $150,000 GST threshold</span></label>
+  </div>
+  <div class="hc-result">
+    <div class="hc-score" id="rtr-hc-score">0 / 9</div>
+    <div class="hc-meter-wrap">
+      <div class="hc-meter-track"><div class="hc-meter" id="rtr-hc-meter"></div></div>
+      <div class="hc-msg" id="rtr-hc-msg">Tick the statements above to see how your club is tracking.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="sec">
+  <div class="sec-eyebrow">Go to the source</div>
+  <h2 class="sec-title">Official references &amp; tools</h2>
+  <p class="sec-intro">The authorities and Rotary bodies behind this guidance. Always confirm current rules and thresholds on these sites.</p>
+  <div class="res-grid">
+    <a class="res" href="https://www.acnc.gov.au/tools/guides/charity-reserves-financial-stability-and-sustainability" target="_blank" rel="noopener">
+      <div class="r-src">ACNC</div><div class="r-title">Charity reserves guide</div><div class="r-desc">How to set and justify an appropriate reserve level.</div>
+    </a>
+    <a class="res" href="https://www.acnc.gov.au/tools/guides/managing-charity-money-guide-for-responsible-people" target="_blank" rel="noopener">
+      <div class="r-src">ACNC</div><div class="r-title">Managing charity money</div><div class="r-desc">Financial obligations for Responsible People.</div>
+    </a>
+    <a class="res" href="https://www.consumer.vic.gov.au/clubs-and-fundraising/incorporated-associations" target="_blank" rel="noopener">
+      <div class="r-src">Consumer Affairs Victoria</div><div class="r-title">Incorporated associations</div><div class="r-desc">Reporting tiers, AGM and annual statement duties.</div>
+    </a>
+    <a class="res" href="https://www.consumer.vic.gov.au/clubs-and-fundraising/fundraisers" target="_blank" rel="noopener">
+      <div class="r-src">Consumer Affairs Victoria</div><div class="r-title">Fundraisers</div><div class="r-desc">Registration, exemptions and responsibilities.</div>
+    </a>
+    <a class="res" href="https://rawcs.org/" target="_blank" rel="noopener">
+      <div class="r-src">RAWCS</div><div class="r-title">Rotary Australia World Community Service</div><div class="r-desc">DGR funds and project accounting for clubs.</div>
+    </a>
+    <a class="res" href="https://my.rotary.org/en/learning-reference/learn-role" target="_blank" rel="noopener">
+      <div class="r-src">My Rotary</div><div class="r-title">Club treasurer resources</div><div class="r-desc">Official role guidance and the treasurer manual.</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <b>A note on this guide.</b> This Treasurer Hub is general information prepared for Rotary District 9815 clubs in Victoria, Australia. It is not legal, accounting or financial advice. Laws, thresholds and Rotary processes change — please confirm current requirements with Consumer Affairs Victoria, the ACNC, RAWCS and your own qualified accountant before acting.
+  <div class="contact">Questions? Contact your District Treasurer &mdash; <a href="mailto:treasurer@rotary9815.org.au">treasurer@rotary9815.org.au</a></div>
+</footer>
+
+<script>
+(function(){
+  var root = document.getElementById('rtr-hub');
+  if(!root){return;}
+  function reduce(){ return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+  /* accordion */
+  var heads = root.querySelectorAll('.step-head');
+  Array.prototype.forEach.call(heads, function(btn){
+    btn.addEventListener('click', function(){
+      var step = btn.parentNode; /* .step */
+      var isOpen = step.className.indexOf('open') > -1;
+      if(isOpen){ step.className = step.className.replace(/\s*open/,''); btn.setAttribute('aria-expanded','false'); }
+      else { step.className += ' open'; btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* step checklists -> progress */
+  var boxes = root.querySelectorAll('.steps input[type=checkbox]');
+  var fill = root.querySelector('#rtr-progress-fill');
+  var pct  = root.querySelector('#rtr-progress-pct');
+  var steps = root.querySelectorAll('.step');
+
+  function updateProgress(){
+    var total = boxes.length, done = 0, i;
+    for(i=0;i<boxes.length;i++){ if(boxes[i].checked){ done++; } }
+    var p = total ? Math.round(done/total*100) : 0;
+    if(fill){ fill.style.width = p + '%'; }
+    if(pct){ pct.textContent = p + '%'; }
+    Array.prototype.forEach.call(steps, function(step){
+      var bs = step.querySelectorAll('input[type=checkbox]'), d=0, j;
+      for(j=0;j<bs.length;j++){ if(bs[j].checked){ d++; } }
+      var pill = step.querySelector('.done-pill');
+      if(pill){ pill.textContent = d + '/' + bs.length; }
+      var complete = (bs.length>0 && d===bs.length);
+      if(complete && step.className.indexOf('complete')===-1){ step.className += ' complete'; }
+      else if(!complete){ step.className = step.className.replace(/\s*complete/,''); }
+    });
+  }
+  Array.prototype.forEach.call(boxes, function(b){ b.addEventListener('change', updateProgress); });
+  updateProgress();
+
+  /* quick-find chips */
+  var chips = root.querySelectorAll('.chip');
+  Array.prototype.forEach.call(chips, function(chip){
+    chip.addEventListener('click', function(){
+      var el = root.querySelector('#' + chip.getAttribute('data-target'));
+      if(!el){ return; }
+      if(el.className.indexOf('open')===-1){ el.className += ' open'; }
+      var h = el.querySelector('.step-head'); if(h){ h.setAttribute('aria-expanded','true'); }
+      el.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  /* health check */
+  var hc = root.querySelectorAll('.hc-grid input[type=checkbox]');
+  var meter = root.querySelector('#rtr-hc-meter');
+  var score = root.querySelector('#rtr-hc-score');
+  var msg   = root.querySelector('#rtr-hc-msg');
+  function updateHC(){
+    var total = hc.length, done = 0, i;
+    for(i=0;i<hc.length;i++){ if(hc[i].checked){ done++; } }
+    var p = total ? Math.round(done/total*100) : 0;
+    if(meter){ meter.style.width = p + '%'; }
+    if(score){ score.textContent = done + ' / ' + total; }
+    if(msg){
+      var text, cls;
+      if(done===0){ text = 'Tick the statements above to see how your club is tracking.'; cls=''; }
+      else if(done<=3){ text = 'Needs attention — start with separate accounts and a budget.'; cls='low'; }
+      else if(done<=6){ text = 'On the way — tighten reserves, compliance and controls.'; cls='mid'; }
+      else { text = 'Strong footing — your club is well placed to launch with confidence.'; cls='high'; }
+      msg.textContent = text;
+      msg.className = 'hc-msg ' + cls;
+    }
+  }
+  Array.prototype.forEach.call(hc, function(b){ b.addEventListener('change', updateHC); });
+  updateHC();
+})();
+</script>
+
+</div>
+<!-- ============ END #rtr-hub ============ -->
+
+</body>
+</html>
