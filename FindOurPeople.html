@@ -1,0 +1,506 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<div id="d9815-membership-hub">
+  <style>
+    #d9815-membership-hub{
+      --navy:#17458F; --navy-deep:#0d2c5e; --azure:#0067C8; --sky:#00A2E0;
+      --gold:#F7A81B; --gold-soft:#FFE0A0; --ink:#1A2A47; --mute:#5B6B85;
+      --tint:#EEF3FA; --tint2:#F5F8FC; --line:#D9E2F0; --paper:#ffffff;
+      --green:#2E7D32; --green-soft:#EAF4EA; --red:#C0392B; --red-soft:#FBEDEB;
+      --display:'Fraunces',Georgia,'Times New Roman',serif;
+      --body:'Hanken Grotesk',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      --script:'Dancing Script','Segoe Script',cursive;
+      --radius:16px; --shadow:0 8px 30px rgba(13,44,94,.10);
+      font-family:var(--body); color:var(--ink); line-height:1.55;
+      max-width:1040px; margin:0 auto; padding:0 4px;
+      -webkit-font-smoothing:antialiased; text-align:left;
+    }
+    #d9815-membership-hub *{box-sizing:border-box;}
+    #d9815-membership-hub p{margin:0 0 .7em;}
+    #d9815-membership-hub h1,#d9815-membership-hub h2,#d9815-membership-hub h3{font-family:var(--display);line-height:1.15;margin:0;color:var(--navy);}
+    #d9815-membership-hub .rainbow{height:5px;border-radius:6px;background:linear-gradient(90deg,#0067C8,#00A2E0,#36B37E,#F7A81B,#E8602C);}
+
+    /* HERO */
+    #d9815-membership-hub .hero{
+      position:relative;border-radius:var(--radius);overflow:hidden;
+      background:linear-gradient(135deg,var(--navy-deep),var(--navy));
+      color:#fff;padding:38px 30px 32px;box-shadow:var(--shadow);
+    }
+    #d9815-membership-hub .hero::after{content:"";position:absolute;inset:0;background:
+      radial-gradient(700px 220px at 88% -20%,rgba(0,162,224,.40),transparent 70%);
+      pointer-events:none;}
+    #d9815-membership-hub .badge{
+      display:inline-block;background:var(--gold-soft);color:#5a3d00;
+      font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+      padding:6px 12px;border-radius:999px;}
+    #d9815-membership-hub .hero h1{color:#fff;font-size:clamp(30px,5vw,46px);font-weight:600;margin:14px 0 6px;}
+    #d9815-membership-hub .hero .script{font-family:var(--script);color:var(--gold-soft);font-size:clamp(22px,3.4vw,30px);display:block;line-height:1;margin-bottom:6px;}
+    #d9815-membership-hub .hero p{color:#dce7f7;max-width:60ch;font-size:16px;margin:0;}
+    #d9815-membership-hub .hero .rainbow{margin-top:22px;}
+
+    /* DIRECTOR NOTE */
+    #d9815-membership-hub .note{
+      background:var(--tint);border:1px solid var(--line);border-left:5px solid var(--azure);
+      border-radius:12px;padding:14px 18px;margin:16px 0 6px;font-size:14.5px;color:var(--ink);}
+    #d9815-membership-hub .note strong{color:var(--navy);}
+
+    /* STEP NAV */
+    #d9815-membership-hub .steps{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 8px;}
+    #d9815-membership-hub .stepbtn{
+      flex:1 1 auto;min-width:150px;cursor:pointer;border:1px solid var(--line);background:var(--paper);
+      border-radius:12px;padding:10px 14px;font-family:var(--body);font-size:14px;color:var(--mute);
+      display:flex;align-items:center;gap:10px;transition:.18s;text-align:left;}
+    #d9815-membership-hub .stepbtn:hover{border-color:var(--sky);color:var(--navy);}
+    #d9815-membership-hub .stepbtn .n{
+      flex:none;width:26px;height:26px;border-radius:50%;background:var(--tint);color:var(--navy);
+      font-weight:700;font-size:13px;display:grid;place-items:center;font-family:var(--display);}
+    #d9815-membership-hub .stepbtn .lbl{font-weight:600;}
+    #d9815-membership-hub .stepbtn[aria-selected="true"]{
+      background:linear-gradient(135deg,var(--navy-deep),var(--navy));border-color:transparent;color:#fff;box-shadow:var(--shadow);}
+    #d9815-membership-hub .stepbtn[aria-selected="true"] .n{background:var(--gold-soft);color:#5a3d00;}
+    #d9815-membership-hub .stepbtn[aria-selected="true"] .lbl{color:#fff;}
+
+    /* PANELS */
+    #d9815-membership-hub .panel{display:none;animation:d9fade .35s ease;}
+    #d9815-membership-hub .panel.active{display:block;}
+    @keyframes d9fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+    #d9815-membership-hub .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px;margin:14px 0;box-shadow:var(--shadow);}
+    #d9815-membership-hub .eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--gold);}
+    #d9815-membership-hub .card h2{font-size:clamp(22px,3.2vw,28px);font-weight:600;margin:6px 0 10px;}
+    #d9815-membership-hub .card h3{font-size:18px;color:var(--azure);margin:18px 0 6px;font-weight:600;}
+    #d9815-membership-hub .lead{font-size:16px;color:var(--ink);}
+    #d9815-membership-hub .takeaway{margin-top:18px;background:var(--tint2);border-left:5px solid var(--gold);border-radius:10px;padding:12px 16px;font-size:15px;}
+    #d9815-membership-hub .takeaway b{color:var(--navy);}
+
+    /* STATS */
+    #d9815-membership-hub .stats{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 4px;}
+    #d9815-membership-hub .stat{flex:1 1 160px;background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;border-radius:14px;padding:16px 16px;}
+    #d9815-membership-hub .stat .big{font-family:var(--display);font-size:34px;font-weight:600;line-height:1;color:var(--gold-soft);}
+    #d9815-membership-hub .stat .cap{font-size:13.5px;color:#dce7f7;margin-top:8px;}
+
+    /* CHIP GRID (motivations) */
+    #d9815-membership-hub .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px;}
+    #d9815-membership-hub .flip{cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--tint2);transition:.18s;text-align:left;font-family:var(--body);}
+    #d9815-membership-hub .flip:hover{border-color:var(--sky);transform:translateY(-2px);}
+    #d9815-membership-hub .flip .t{font-weight:700;color:var(--navy);font-size:15px;}
+    #d9815-membership-hub .flip .d{font-size:13.5px;color:var(--mute);margin-top:6px;display:none;}
+    #d9815-membership-hub .flip[aria-expanded="true"]{background:#fff;border-color:var(--azure);box-shadow:var(--shadow);}
+    #d9815-membership-hub .flip[aria-expanded="true"] .d{display:block;}
+    #d9815-membership-hub .hint{font-size:13px;color:var(--mute);font-style:italic;margin-top:4px;}
+
+    /* FLIPS (two reframes) */
+    #d9815-membership-hub .reframe{border-radius:12px;padding:14px 18px;margin:10px 0;border:1px solid var(--line);}
+    #d9815-membership-hub .reframe.navy{border-left:6px solid var(--navy);background:var(--tint2);}
+    #d9815-membership-hub .reframe.gold{border-left:6px solid var(--gold);background:var(--tint2);}
+    #d9815-membership-hub .reframe .h{font-family:var(--display);font-weight:600;color:var(--navy);margin-bottom:4px;}
+
+    /* LADDER */
+    #d9815-membership-hub .ladder{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+    #d9815-membership-hub .rung{border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+    #d9815-membership-hub .rung > button{width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--paper);border:0;cursor:pointer;font-family:var(--body);font-size:15px;color:var(--navy);font-weight:600;text-align:left;}
+    #d9815-membership-hub .rung > button:hover{background:var(--tint2);}
+    #d9815-membership-hub .rung .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--tint);color:var(--navy);font-family:var(--display);font-weight:700;display:grid;place-items:center;font-size:14px;}
+    #d9815-membership-hub .rung .chev{margin-left:auto;color:var(--sky);transition:.2s;font-size:18px;}
+    #d9815-membership-hub .rung[aria-expanded="true"] .chev{transform:rotate(90deg);}
+    #d9815-membership-hub .rung .body{display:none;padding:0 16px 14px 56px;font-size:14px;color:var(--ink);}
+    #d9815-membership-hub .rung[aria-expanded="true"] .body{display:block;}
+    #d9815-membership-hub .rung[aria-expanded="true"] > button{background:var(--tint);}
+    #d9815-membership-hub .rung .ask{margin-top:6px;background:var(--gold-soft);color:#5a3d00;border-radius:8px;padding:6px 10px;font-size:13.5px;display:inline-block;}
+
+    /* SAY THIS NOT THAT */
+    #d9815-membership-hub .say{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:6px;}
+    #d9815-membership-hub .say .hd{padding:10px 14px;font-weight:700;color:#fff;font-size:13.5px;}
+    #d9815-membership-hub .say .hd.no{background:var(--red);}
+    #d9815-membership-hub .say .hd.yes{background:var(--green);}
+    #d9815-membership-hub .say .c{padding:11px 14px;font-size:14px;border-top:1px solid var(--line);}
+    #d9815-membership-hub .say .c.no{background:var(--red-soft);}
+    #d9815-membership-hub .say .c.yes{background:var(--green-soft);}
+
+    /* PRIORITY pills */
+    #d9815-membership-hub .prio{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+    #d9815-membership-hub .prow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:10px 14px;}
+    #d9815-membership-hub .ptag{flex:none;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;}
+    #d9815-membership-hub .ptag.lead{background:var(--green-soft);color:var(--green);}
+    #d9815-membership-hub .ptag.mid{background:#E7F1FB;color:var(--azure);}
+    #d9815-membership-hub .ptag.low{background:#FBF3E2;color:#B9770E;}
+    #d9815-membership-hub .ptag.avoid{background:var(--red-soft);color:var(--red);}
+    #d9815-membership-hub .prow .txt{font-size:14.5px;}
+
+    /* BUILDER (signature) */
+    #d9815-membership-hub .builder{background:linear-gradient(135deg,#0d2c5e,#17458F);border-radius:var(--radius);padding:24px;color:#fff;box-shadow:var(--shadow);}
+    #d9815-membership-hub .builder h3{color:#fff;font-family:var(--display);font-size:20px;margin:0 0 4px;}
+    #d9815-membership-hub .builder p.sub{color:#cfe0f5;font-size:14px;margin-bottom:14px;}
+    #d9815-membership-hub .fld{margin-bottom:12px;}
+    #d9815-membership-hub .fld label{display:block;font-size:12.5px;font-weight:600;color:var(--gold-soft);letter-spacing:.03em;margin-bottom:4px;}
+    #d9815-membership-hub .fld input{width:100%;border:0;border-radius:9px;padding:10px 12px;font-family:var(--body);font-size:14.5px;color:var(--ink);background:#fff;}
+    #d9815-membership-hub .fld input:focus{outline:3px solid var(--sky);}
+    #d9815-membership-hub .preview{background:rgba(255,255,255,.10);border:1px dashed rgba(255,255,255,.45);border-radius:12px;padding:16px;margin-top:8px;}
+    #d9815-membership-hub .preview .plabel{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);font-weight:700;}
+    #d9815-membership-hub .preview .ptext{font-size:16px;line-height:1.5;margin-top:8px;color:#fff;}
+    #d9815-membership-hub .preview .ptext em{color:var(--gold-soft);font-style:normal;}
+    #d9815-membership-hub .cta{margin-top:12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:0;background:var(--gold-soft);color:#5a3d00;font-family:var(--body);font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;transition:.15s;}
+    #d9815-membership-hub .cta:hover{background:#ffd27a;}
+    #d9815-membership-hub .cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
+
+    /* TIMELINE */
+    #d9815-membership-hub .tl{display:flex;flex-direction:column;gap:0;margin-top:6px;border-left:2px solid var(--line);padding-left:18px;}
+    #d9815-membership-hub .tl .item{position:relative;padding:6px 0 16px;}
+    #d9815-membership-hub .tl .item::before{content:"";position:absolute;left:-25px;top:10px;width:12px;height:12px;border-radius:50%;background:var(--azure);border:2px solid #fff;}
+    #d9815-membership-hub .tl .ph{font-weight:700;color:var(--navy);font-size:14.5px;}
+    #d9815-membership-hub .tl .ph span{color:var(--sky);font-weight:600;}
+    #d9815-membership-hub .tl .tx{font-size:14px;color:var(--ink);}
+
+    /* SIGNS toggle */
+    #d9815-membership-hub .seg{display:inline-flex;background:var(--tint);border-radius:999px;padding:4px;margin:6px 0 10px;}
+    #d9815-membership-hub .seg button{border:0;background:transparent;cursor:pointer;font-family:var(--body);font-weight:600;font-size:14px;padding:7px 16px;border-radius:999px;color:var(--mute);}
+    #d9815-membership-hub .seg button[aria-pressed="true"].good{background:var(--green);color:#fff;}
+    #d9815-membership-hub .seg button[aria-pressed="true"].warn{background:var(--red);color:#fff;}
+    #d9815-membership-hub .signlist{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;}
+    #d9815-membership-hub .signlist li{border-radius:10px;padding:10px 13px;font-size:14px;border:1px solid var(--line);}
+    #d9815-membership-hub .signlist.good li{background:var(--green-soft);}
+    #d9815-membership-hub .signlist.warn li{background:var(--red-soft);}
+    #d9815-membership-hub .signlist li b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:2px;}
+
+    /* CHECKLIST */
+    #d9815-membership-hub .check{list-style:none;margin:8px 0 0;padding:0;}
+    #d9815-membership-hub .check li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:.15s;background:#fff;}
+    #d9815-membership-hub .check li:hover{border-color:var(--sky);}
+    #d9815-membership-hub .check .box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--sky);display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;transition:.15s;}
+    #d9815-membership-hub .check li[aria-checked="true"]{background:var(--tint2);border-color:var(--green);}
+    #d9815-membership-hub .check li[aria-checked="true"] .box{background:var(--green);border-color:var(--green);}
+    #d9815-membership-hub .check li[aria-checked="true"] .ctxt{color:var(--mute);text-decoration:line-through;}
+    #d9815-membership-hub .check .ctxt b{color:var(--navy);}
+    #d9815-membership-hub .progress{margin-top:6px;font-size:14px;font-weight:600;color:var(--azure);}
+
+    /* nav buttons */
+    #d9815-membership-hub .nav{display:flex;justify-content:space-between;gap:10px;margin:18px 0 4px;}
+    #d9815-membership-hub .navbtn{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 20px;font-family:var(--body);font-weight:600;font-size:14px;color:var(--navy);transition:.15s;}
+    #d9815-membership-hub .navbtn:hover{border-color:var(--azure);background:var(--tint2);}
+    #d9815-membership-hub .navbtn.primary{background:var(--azure);color:#fff;border-color:transparent;}
+    #d9815-membership-hub .navbtn.primary:hover{background:var(--navy);}
+    #d9815-membership-hub .navbtn[disabled]{opacity:.35;cursor:default;}
+
+    /* footer */
+    #d9815-membership-hub .foot{margin:22px 0 8px;text-align:center;}
+    #d9815-membership-hub .foot .rainbow{margin-bottom:12px;}
+    #d9815-membership-hub .foot p{font-size:12.5px;color:var(--mute);}
+    #d9815-membership-hub .foot .mk{font-family:var(--display);color:var(--navy);font-weight:600;}
+
+    #d9815-membership-hub .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:9999;box-shadow:var(--shadow);}
+    #d9815-membership-hub .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+    @media (max-width:560px){
+      #d9815-membership-hub .say{grid-template-columns:1fr;}
+      #d9815-membership-hub .hero{padding:30px 20px;}
+      #d9815-membership-hub .card{padding:20px 18px;}
+    }
+    @media (prefers-reduced-motion:reduce){
+      #d9815-membership-hub *{animation:none !important;transition:none !important;}
+    }
+  </style>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="badge">Rotary District 9815 · Membership</span>
+    <h1><span class="script">Every member is a connector.</span>Help us find our people.</h1>
+    <p>Growing the club isn&rsquo;t the membership director&rsquo;s job alone &mdash; it&rsquo;s yours too. In five short steps, here&rsquo;s how to understand why clubs shrink, talk about what we do, and bring the right people alongside us.</p>
+    <div class="rainbow"></div>
+  </div>
+
+  <div class="note"><strong>Membership directors:</strong> share this page with every member. It turns four District discussion papers into one five-minute, do-it-yourself guide &mdash; ending with a real action each member can take this month.</div>
+
+  <!-- STEP NAV -->
+  <div class="steps" role="tablist" aria-label="Membership steps">
+    <button class="stepbtn" role="tab" aria-selected="true"  data-step="0"><span class="n">1</span><span class="lbl">Understand</span></button>
+    <button class="stepbtn" role="tab" aria-selected="false" data-step="1"><span class="n">2</span><span class="lbl">Connect</span></button>
+    <button class="stepbtn" role="tab" aria-selected="false" data-step="2"><span class="n">3</span><span class="lbl">Tell the story</span></button>
+    <button class="stepbtn" role="tab" aria-selected="false" data-step="3"><span class="n">4</span><span class="lbl">Welcome</span></button>
+    <button class="stepbtn" role="tab" aria-selected="false" data-step="4"><span class="n">5</span><span class="lbl">Your part</span></button>
+  </div>
+
+  <!-- STEP 1: UNDERSTAND -->
+  <div class="panel active" data-panel="0" role="tabpanel">
+    <div class="card">
+      <div class="eyebrow">Step 1 · The honest picture</div>
+      <h2>It&rsquo;s not a goodwill problem</h2>
+      <p class="lead">Rotary&rsquo;s decline is real &mdash; but the usual explanation (&ldquo;people don&rsquo;t care any more&rsquo;) is wrong. People still care. What&rsquo;s changed is how, and whether they ever get asked.</p>
+      <div class="stats">
+        <div class="stat"><div class="big">~36%</div><div class="cap">Fall in Australian Rotary membership over 20 years &mdash; worse per head of population.</div></div>
+        <div class="stat"><div class="big">~half</div><div class="cap">Of all volunteers joined because someone they knew personally asked them.</div></div>
+        <div class="stat"><div class="big">~60%</div><div class="cap">Of people don&rsquo;t even realise a Rotary club exists in their own community.</div></div>
+      </div>
+      <p style="margin-top:14px">So the gap isn&rsquo;t affection &mdash; people like what Rotary does. The gap is <b>relationships</b> (we rarely ask) and <b>clarity</b> (people can&rsquo;t picture themselves in it). A recruitment drive fixes neither.</p>
+
+      <h3>People volunteer to meet a need &mdash; tap one to see it</h3>
+      <p class="hint">The same task means different things to different people. Knowing what someone&rsquo;s really after is how you find &mdash; and keep &mdash; them.</p>
+      <div class="grid" id="d9-vfi">
+        <button class="flip" aria-expanded="false"><span class="t">Values</span><span class="d">To act on a real concern for others; to do something worthwhile.</span></button>
+        <button class="flip" aria-expanded="false"><span class="t">Understanding</span><span class="d">To learn, use their skills, and see the world differently.</span></button>
+        <button class="flip" aria-expanded="false"><span class="t">Social</span><span class="d">To belong, and to be among people they like or admire.</span></button>
+        <button class="flip" aria-expanded="false"><span class="t">Career</span><span class="d">To build experience, networks and prospects.</span></button>
+        <button class="flip" aria-expanded="false"><span class="t">Protective</span><span class="d">To feel useful and step outside their own troubles.</span></button>
+        <button class="flip" aria-expanded="false"><span class="t">Growth</span><span class="d">To grow, to feel needed, to build self-esteem.</span></button>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> We&rsquo;re not short of generous people. We&rsquo;re short of relationships and clear invitations &mdash; and that&rsquo;s fixable.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2: CONNECT -->
+  <div class="panel" data-panel="1" role="tabpanel">
+    <div class="card">
+      <div class="eyebrow">Step 2 · A better way to grow</div>
+      <h2>Stop recruiting. Start connecting.</h2>
+      <p class="lead">Almost no one joins cold. Build relationships first, and let membership grow out of them. Two shifts make the difference:</p>
+      <div class="reframe navy"><div class="h">Flip 1 &mdash; Relationships before asks</div>Be useful and known in the community before you ask anyone for anything. A club people already work alongside never has to run a &ldquo;drive.&rdquo;</div>
+      <div class="reframe gold"><div class="h">Flip 2 &mdash; From &ldquo;what does Rotary do?&rdquo; to &ldquo;what could I do?&rdquo;</div>Offer people a way to make a difference, not a description of an institution. Shift the question in their mind to &ldquo;how do I get involved?&rdquo;</div>
+
+      <h3>The engagement ladder &mdash; tap a rung</h3>
+      <p class="hint">Never ask a stranger to join. Ask a participant to do a little more. Match the invitation to the rung.</p>
+      <div class="ladder" id="d9-ladder">
+        <div class="rung" aria-expanded="false"><button><span class="num">1</span>Be known &amp; useful<span class="chev">&rsaquo;</span></button><div class="body">Visible community projects and presence; tell the story of the difference you make.<span class="ask">The ask: none yet &mdash; just become trusted.</span></div></div>
+        <div class="rung" aria-expanded="false"><button><span class="num">2</span>Connect<span class="chev">&rsaquo;</span></button><div class="body">Meet people through shared community activity &mdash; councils, schools, businesses, charities.<span class="ask">The ask: &ldquo;We should work together on this.&rdquo;</span></div></div>
+        <div class="rung" aria-expanded="false"><button><span class="num">3</span>Participate once<span class="chev">&rsaquo;</span></button><div class="body">A single hands-on day a non-member can join with zero strings. They feel the difference first-hand.<span class="ask">The ask: &ldquo;Come help us do this one thing.&rdquo;</span></div></div>
+        <div class="rung" aria-expanded="false"><button><span class="num">4</span>Belong loosely<span class="chev">&rsaquo;</span></button><div class="body">A Friends of the Club / volunteer circle. They&rsquo;re part of the orbit, turning up regularly.<span class="ask">The ask: &ldquo;Join the team for this cause.&rdquo;</span></div></div>
+        <div class="rung" aria-expanded="false"><button><span class="num">5</span>Contribute<span class="chev">&rsaquo;</span></button><div class="body">They&rsquo;ve found a role that fits. The talk is now about what they bring, not what Rotary is.<span class="ask">The ask: &ldquo;You&rsquo;re already one of us &mdash; make it official?&rdquo;</span></div></div>
+        <div class="rung" aria-expanded="false"><button><span class="num">6</span>Invite others<span class="chev">&rsaquo;</span></button><div class="body">A confident member who gets the value because they lived it before they joined.<span class="ask">The ask: &ldquo;Who do you know who&rsquo;d love this?&rdquo;</span></div></div>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> Membership is what grows in the soil of relationships. Build the soil first.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: TELL THE STORY -->
+  <div class="panel" data-panel="2" role="tabpanel">
+    <div class="card">
+      <div class="eyebrow">Step 3 · Say it so a stranger gets it</div>
+      <h2>Lead with the difference, not the institution</h2>
+      <p class="lead">A stranger doesn&rsquo;t want a definition of Rotary. They want to know what difference you make &mdash; and whether they could be part of it.</p>
+
+      <h3>What to say first &hellip; and last</h3>
+      <div class="prio">
+        <div class="prow"><span class="ptag lead">Lead</span><span class="txt">A concrete local difference &mdash; a real result, with a face or a place.</span></div>
+        <div class="prow"><span class="ptag lead">Lead</span><span class="txt">The belief behind it &mdash; why you refuse to accept the problem.</span></div>
+        <div class="prow"><span class="ptag mid">Second</span><span class="txt">How they could be part of it.</span></div>
+        <div class="prow"><span class="ptag low">Later</span><span class="txt">Causes you work on; meeting times; what it costs.</span></div>
+        <div class="prow"><span class="ptag avoid">Avoid early</span><span class="txt">History, global size, structure, jargon (&ldquo;District&rdquo;, &ldquo;the Foundation&rdquo;&hellip;).</span></div>
+      </div>
+
+      <h3>Say this, not that</h3>
+      <div class="say">
+        <div class="hd no">Loses them</div><div class="hd yes">Draws them in</div>
+        <div class="c no">&ldquo;Rotary is a global service organisation founded in 1905.&rdquo;</div><div class="c yes">&ldquo;We&rsquo;re locals who get things done. Last month we&hellip;&rdquo;</div>
+        <div class="c no">&ldquo;We address food insecurity.&rdquo;</div><div class="c yes">&ldquo;We packed 4,000 breakfasts so no kid starts school hungry.&rdquo;</div>
+        <div class="c no">&ldquo;Join Rotary and enjoy fellowship and service.&rdquo;</div><div class="c yes">&ldquo;Come build something that matters, with people you&rsquo;ll be glad to know.&rdquo;</div>
+      </div>
+
+      <!-- SIGNATURE: BUILDER -->
+      <h3>Build your own opener &mdash; then use it</h3>
+      <p class="hint">Fill these in for <em>your</em> club. Your opener appears live below &mdash; copy it for the website, a brochure, or your next conversation.</p>
+      <div class="builder">
+        <div class="fld"><label>We&rsquo;re&hellip; (who you are, in plain words)</label><input id="b-who" type="text" value="locals in our town" /></div>
+        <div class="fld"><label>&hellip;who&hellip; (the belief: what you won&rsquo;t accept)</label><input id="b-why" type="text" value="think no kid should go hungry at school" /></div>
+        <div class="fld"><label>So we&hellip; (a concrete action + result)</label><input id="b-do" type="text" value="pack hot breakfasts for three local schools every week" /></div>
+        <div class="fld"><label>Recently&hellip; (one short, real story)</label><input id="b-story" type="text" value="last term that was 4,000 breakfasts" /></div>
+        <div class="fld"><label>If that sounds like you&hellip; (the invitation)</label><input id="b-ask" type="text" value="come and lend a hand one morning" /></div>
+        <div class="preview">
+          <div class="plabel">Your opener</div>
+          <div class="ptext" id="b-out"></div>
+        </div>
+        <button class="cta" id="b-copy">Copy my opener</button>
+      </div>
+      <div class="takeaway"><b>The test:</b> read it to someone who knows nothing about Rotary. If they can&rsquo;t say what difference you make and how they&rsquo;d fit, rewrite it.</div>
+    </div>
+  </div>
+
+  <!-- STEP 4: WELCOME -->
+  <div class="panel" data-panel="3" role="tabpanel">
+    <div class="card">
+      <div class="eyebrow">Step 4 · From stranger to family</div>
+      <h2>Belonging before obligation</h2>
+      <p class="lead">A third of those who leave go within their first two years &mdash; usually because they never felt they belonged before the duties arrived. The first 90 days decide it.</p>
+
+      <h3>The welcome, phase by phase</h3>
+      <div class="tl">
+        <div class="item"><div class="ph">Before they join <span>· sponsor</span></div><div class="tx">Ask what they want from it. Set honest expectations. Introduce them to a few members by name.</div></div>
+        <div class="item"><div class="ph">First week <span>· buddy</span></div><div class="tx">Make contact within days, sit with them, give &ldquo;no dumb questions&rdquo; permission.</div></div>
+        <div class="item"><div class="ph">First 30 days <span>· buddy</span></div><div class="tx">One small, meaningful task. One social invite. An honest check-in: &ldquo;is this what you hoped?&rdquo;</div></div>
+        <div class="item"><div class="ph">90 days <span>· highest-risk gate</span></div><div class="tx">Match them to a role that fits their motive. Second check-in.</div></div>
+        <div class="item"><div class="ph">First year <span>· club</span></div><div class="tx">Mark the milestone. Ask them to help welcome the next newcomer.</div></div>
+      </div>
+
+      <h3>Is the transition working? Watch the signs</h3>
+      <div class="seg" id="d9-seg">
+        <button class="good" aria-pressed="true">Going well</button>
+        <button class="warn" aria-pressed="false">Warning signs</button>
+      </div>
+      <ul class="signlist good" id="d9-signs">
+        <li><b>Socially</b>Seeks people out, learning names</li>
+        <li><b>Taking part</b>Volunteers, asks how to help</li>
+        <li><b>Voice</b>Offers opinions, asks questions</li>
+        <li><b>Language</b>Says &ldquo;we&rdquo; and &ldquo;our club&rdquo;</li>
+        <li><b>Energy</b>Enjoys it, brings a guest</li>
+        <li><b>Effort vs reward</b>Feels their contribution matters</li>
+      </ul>
+      <div class="takeaway"><b>Takeaway:</b> The shift from &ldquo;we&rdquo; to &ldquo;you&rdquo; is the clearest warning sign. Act early &mdash; drift rarely reverses itself.</div>
+    </div>
+  </div>
+
+  <!-- STEP 5: YOUR PART -->
+  <div class="panel" data-panel="4" role="tabpanel">
+    <div class="card">
+      <div class="eyebrow">Step 5 · Your part this month</div>
+      <h2>One member, one invitation</h2>
+      <p class="lead">The single highest-yield thing any of us can do costs nothing: think of one person who&rsquo;d care, and invite them to <em>do</em> something &mdash; not to join.</p>
+
+      <div class="builder">
+        <h3>Make your invitation</h3>
+        <p class="sub">Who&rsquo;s one person who cares about something we work on? Fill this in &mdash; your invitation appears below.</p>
+        <div class="fld"><label>Their name (optional)</label><input id="w-name" type="text" placeholder="e.g. Sam" /></div>
+        <div class="fld"><label>What they care about</label><input id="w-cause" type="text" value="young people in our town" /></div>
+        <div class="preview">
+          <div class="plabel">Try saying</div>
+          <div class="ptext" id="w-out"></div>
+        </div>
+        <button class="cta" id="w-copy">Copy my invitation</button>
+      </div>
+
+      <h3 style="margin-top:22px">Three things you can do this month &mdash; tick them off</h3>
+      <ul class="check" id="d9-check">
+        <li role="checkbox" aria-checked="false"><span class="box">&#10003;</span><span class="ctxt"><b>Invite one person</b> to <em>participate</em> in a project &mdash; not to join.</span></li>
+        <li role="checkbox" aria-checked="false"><span class="box">&#10003;</span><span class="ctxt"><b>Share one real story</b> of what our club did, with a face or a place, somewhere your community already looks.</span></li>
+        <li role="checkbox" aria-checked="false"><span class="box">&#10003;</span><span class="ctxt"><b>Welcome one newer member</b> &mdash; sit with them, learn what they hoped to get from Rotary.</span></li>
+      </ul>
+      <div class="progress" id="d9-prog">0 of 3 done &mdash; pick one to start.</div>
+
+      <div class="takeaway"><b>Remember:</b> we&rsquo;re not recruiting members. We&rsquo;re building relationships and offering people a way to make a difference. Membership is what follows. <b>Tell your membership director which one you&rsquo;ll do.</b></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <button class="navbtn" id="d9-prev" disabled>&larr; Back</button>
+    <button class="navbtn primary" id="d9-next">Next step &rarr;</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="rainbow"></div>
+    <p class="mk">Rotary District 9815 &mdash; Membership Toolkit</p>
+    <p>General information drawn from membership and volunteering research, distilled from four District discussion papers. Not professional advice &mdash; adapt to your club and community.</p>
+  </div>
+
+  <div class="toast" id="d9-toast">Copied to clipboard</div>
+
+  <script>
+  (function(){
+    var hub = document.getElementById('d9815-membership-hub');
+    if(!hub) return;
+    var TOTAL = 5, current = 0;
+    var tabs = hub.querySelectorAll('.stepbtn');
+    var panels = hub.querySelectorAll('.panel');
+    var prev = hub.querySelector('#d9-prev');
+    var next = hub.querySelector('#d9-next');
+
+    function show(n){
+      n = Math.max(0, Math.min(TOTAL-1, n));
+      current = n;
+      tabs.forEach(function(t){ t.setAttribute('aria-selected', String(+t.dataset.step===n)); });
+      panels.forEach(function(p){ p.classList.toggle('active', +p.dataset.panel===n); });
+      prev.disabled = (n===0);
+      next.textContent = (n===TOTAL-1) ? 'Finish \u2713' : 'Next step \u2192';
+      try{ hub.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){ hub.scrollIntoView(); }
+    }
+    tabs.forEach(function(t){ t.addEventListener('click', function(){ show(+t.dataset.step); }); });
+    prev.addEventListener('click', function(){ show(current-1); });
+    next.addEventListener('click', function(){ if(current<TOTAL-1) show(current+1); });
+
+    // VFI flip chips
+    hub.querySelectorAll('#d9-vfi .flip').forEach(function(b){
+      b.addEventListener('click', function(){ b.setAttribute('aria-expanded', b.getAttribute('aria-expanded')==='true'?'false':'true'); });
+    });
+    // Ladder accordion
+    hub.querySelectorAll('#d9-ladder .rung > button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var r = btn.parentElement;
+        r.setAttribute('aria-expanded', r.getAttribute('aria-expanded')==='true'?'false':'true');
+      });
+    });
+
+    // Opener builder
+    var bIds = ['b-who','b-why','b-do','b-story','b-ask'];
+    var bOut = hub.querySelector('#b-out');
+    function esc(s){ return (s||'').replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];}); }
+    function buildOpener(){
+      var v = {}; bIds.forEach(function(id){ v[id]=hub.querySelector('#'+id).value.trim(); });
+      var who = v['b-who']||'[local people]', why=v['b-why']||'[what you won\u2019t accept]',
+          act=v['b-do']||'[a concrete action + result]', story=v['b-story']||'[one short story]', ask=v['b-ask']||'[the invitation]';
+      bOut.innerHTML = 'We\u2019re <em>'+esc(who)+'</em> who <em>'+esc(why)+'</em>. So we <em>'+esc(act)+'</em>. Recently, <em>'+esc(story)+'</em>. If that sounds like you, <em>'+esc(ask)+'</em>.';
+      return bOut.textContent;
+    }
+    bIds.forEach(function(id){ hub.querySelector('#'+id).addEventListener('input', buildOpener); });
+    buildOpener();
+
+    // Warm-ask builder
+    var wName = hub.querySelector('#w-name'), wCause = hub.querySelector('#w-cause'), wOut = hub.querySelector('#w-out');
+    function buildAsk(){
+      var nm = wName.value.trim(), c = wCause.value.trim() || 'something we work on';
+      var pre = nm ? esc(nm)+', ' : '';
+      var cap = pre ? pre.charAt(0).toUpperCase()+pre.slice(1) : '';
+      wOut.innerHTML = '\u201c'+cap+'you clearly care about <em>'+esc(c)+'</em> \u2014 that\u2019s exactly what we\u2019re doing something about. Come and give us a hand with it one day, no strings. I reckon you\u2019d love it.\u201d';
+      return wOut.textContent;
+    }
+    wName.addEventListener('input', buildAsk); wCause.addEventListener('input', buildAsk); buildAsk();
+
+    // Copy buttons
+    var toast = hub.querySelector('#d9-toast');
+    function flash(msg){ toast.textContent = msg||'Copied to clipboard'; toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 1600); }
+    function copyText(txt){
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){flash();},function(){fallback(txt);}); }
+      else fallback(txt);
+    }
+    function fallback(txt){
+      var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); flash(); }catch(e){ flash('Press Ctrl/Cmd+C to copy'); }
+      document.body.removeChild(ta);
+    }
+    hub.querySelector('#b-copy').addEventListener('click', function(){ copyText(buildOpener()); });
+    hub.querySelector('#w-copy').addEventListener('click', function(){ copyText(buildAsk()); });
+
+    // Signs toggle
+    var segBtns = hub.querySelectorAll('#d9-seg button');
+    var signs = hub.querySelector('#d9-signs');
+    var GOOD = [['Socially','Seeks people out, learning names'],['Taking part','Volunteers, asks how to help'],['Voice','Offers opinions, asks questions'],['Language','Says \u201cwe\u201d and \u201cour club\u201d'],['Energy','Enjoys it, brings a guest'],['Effort vs reward','Feels their contribution matters']];
+    var WARN = [['Socially','Sits alone or only with their sponsor'],['Taking part','Declines tasks, \u201cjust observing\u201d'],['Voice','Silent; has stopped contributing'],['Language','Says \u201cyou\u201d and \u201cyour club\u201d'],['Energy','Flat; starts making excuses'],['Effort vs reward','Feels they give more than they get']];
+    function renderSigns(good){
+      var data = good?GOOD:WARN;
+      signs.className = 'signlist '+(good?'good':'warn');
+      signs.innerHTML = data.map(function(d){ return '<li><b>'+d[0]+'</b>'+d[1]+'</li>'; }).join('');
+    }
+    segBtns.forEach(function(b){
+      b.addEventListener('click', function(){
+        segBtns.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        b.setAttribute('aria-pressed','true');
+        renderSigns(b.classList.contains('good'));
+      });
+    });
+
+    // Checklist
+    var checks = hub.querySelectorAll('#d9-check li');
+    var prog = hub.querySelector('#d9-prog');
+    function updateProg(){
+      var done = 0; checks.forEach(function(li){ if(li.getAttribute('aria-checked')==='true') done++; });
+      if(done===0) prog.textContent = '0 of 3 done \u2014 pick one to start.';
+      else if(done<3) prog.textContent = done+' of 3 done \u2014 nice, keep going.';
+      else prog.textContent = '3 of 3 \u2014 that\u2019s how a club grows. Tell your membership director.';
+    }
+    checks.forEach(function(li){
+      function toggle(){ li.setAttribute('aria-checked', li.getAttribute('aria-checked')==='true'?'false':'true'); updateProg(); }
+      li.addEventListener('click', toggle);
+      li.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+      li.setAttribute('tabindex','0');
+    });
+  })();
+  </script>
+</div>
