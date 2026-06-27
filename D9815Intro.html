@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>District 9815 — Home hero + intent router (preview)</title>
+</head>
+<body style="margin:0;background:#e9eef5;padding:24px;font-family:system-ui,sans-serif">
+
+<!-- ================================================================= -->
+<!-- DROP-IN WIDGET STARTS HERE                                         -->
+<!-- Paste everything from <style> to the matching </div> into a        -->
+<!-- ClubRunner custom (HTML) widget. All CSS is scoped to #d9815-home. -->
+<!-- ================================================================= -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@600&display=swap');
+
+#d9815-home,#d9815-home *{box-sizing:border-box;margin:0;padding:0}
+#d9815-home{font-family:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;color:#1A2A47;border-radius:16px;overflow:hidden;box-shadow:0 2px 18px rgba(13,44,94,.10);max-width:1180px;margin:0 auto;background:#fff}
+#d9815-home .fr{font-family:'Fraunces',Georgia,serif}
+#d9815-home .script{font-family:'Dancing Script','Brush Script MT',cursive}
+
+#d9815-home .rainbow{height:6px;background:linear-gradient(90deg,#17458F,#0067C8,#00A2E0,#1D9E75,#F7A81B,#D85A30)}
+
+#d9815-home .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 26px;background:#fff;border-bottom:1px solid #e3e9f2;flex-wrap:wrap;gap:10px}
+#d9815-home .brand{display:flex;align-items:center;gap:11px}
+#d9815-home .brand .mark{width:34px;height:34px;border-radius:50%;background:#17458F;display:flex;align-items:center;justify-content:center;color:#FFE0A0;font-weight:700;font-size:15px}
+#d9815-home .brand .name{font-weight:700;color:#17458F;font-size:17px;letter-spacing:.2px}
+#d9815-home .login{display:inline-flex;align-items:center;gap:7px;border:1.5px solid #c7d4e8;color:#17458F;font-size:14px;font-weight:600;padding:8px 18px;border-radius:999px;text-decoration:none;transition:all .15s ease}
+#d9815-home .login:hover{background:#17458F;color:#fff;border-color:#17458F}
+
+#d9815-home .hero{background:#0d2c5e;background:linear-gradient(135deg,#0d2c5e 0%,#17458F 100%);padding:clamp(36px,5vw,56px) clamp(24px,4vw,48px);color:#fff;position:relative}
+#d9815-home .hero .badge{display:inline-block;background:#FFE0A0;color:#5a3d00;font-weight:700;font-size:12.5px;letter-spacing:.4px;padding:6px 16px;border-radius:999px;text-transform:uppercase}
+#d9815-home .hero .script{display:block;color:#FFE0A0;font-size:clamp(22px,3vw,30px);margin:18px 0 2px}
+#d9815-home .hero h1{font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.1;letter-spacing:-.5px;max-width:14ch}
+#d9815-home .hero p{font-size:clamp(15.5px,1.8vw,18.5px);line-height:1.55;color:#d4e1f5;max-width:54ch;margin-top:14px;font-weight:400}
+#d9815-home .cta-row{display:flex;gap:13px;flex-wrap:wrap;margin-top:26px}
+#d9815-home .cta{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;padding:13px 26px;border-radius:9px;text-decoration:none;transition:all .15s ease}
+#d9815-home .cta-gold{background:#F7A81B;color:#3a2700}
+#d9815-home .cta-gold:hover{background:#ffba3d}
+#d9815-home .cta-ghost{border:1.6px solid #6f8cc0;color:#fff}
+#d9815-home .cta-ghost:hover{background:rgba(255,255,255,.10);border-color:#fff}
+
+#d9815-home .router{background:#F5F8FC;padding:clamp(30px,4vw,46px) clamp(20px,4vw,40px) 8px}
+#d9815-home .eyebrow{text-align:center;color:#5B6B85;font-size:12.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+#d9815-home .router h2{text-align:center;font-weight:600;color:#17458F;font-size:clamp(22px,3vw,30px);margin:5px 0 26px}
+#d9815-home .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:16px;max-width:1080px;margin:0 auto}
+#d9815-home .tile{display:block;background:#fff;border:1px solid #dbe4f0;border-radius:13px;padding:22px 20px;text-decoration:none;color:inherit;transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease}
+#d9815-home .tile:hover{transform:translateY(-4px);border-color:#0067C8;box-shadow:0 8px 22px rgba(13,44,94,.12)}
+#d9815-home .tile .ic{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;color:#fff}
+#d9815-home .tile h3{font-weight:700;color:#17458F;font-size:17px;font-family:'Hanken Grotesk',sans-serif}
+#d9815-home .tile p{color:#5B6B85;font-size:13.5px;line-height:1.45;margin-top:4px}
+#d9815-home .tile .go{display:inline-block;margin-top:10px;color:#0067C8;font-size:13.5px;font-weight:600}
+
+#d9815-home .stats{background:#F5F8FC;padding:24px 26px clamp(30px,4vw,42px);display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+#d9815-home .stat{text-align:center;min-width:130px}
+#d9815-home .stat .num{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:600;line-height:1}
+#d9815-home .stat .lbl{font-size:13px;color:#5B6B85;margin-top:5px}
+
+@media (max-width:560px){
+  #d9815-home .hero h1{max-width:none}
+  #d9815-home .cta{flex:1 1 100%;justify-content:center}
+}
+</style>
+
+<div id="d9815-home">
+
+  <div class="rainbow"></div>
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="mark">R</div>
+      <div class="name">Rotary District 9815</div>
+    </div>
+    <a class="login" href="https://portal.clubrunner.ca/50387/User/Login">&#128274; Member login</a>
+  </div>
+
+  <div class="hero">
+    <span class="badge">2026&ndash;27 &middot; A new Rotary year</span>
+    <span class="script">Welcome to your year</span>
+    <h1 class="fr">Everything your club needs, in one place.</h1>
+    <p>The District is here to back you &mdash; the tools, the people and the answers to help your club grow, run smoothly and tell its story.</p>
+    <div class="cta-row">
+      <a class="cta cta-gold" href="#d9815-router">Find what you need &rarr;</a>
+      <a class="cta cta-ghost" href="https://rotary9815.org.au/Page/district-news-page">Watch the welcome</a>
+    </div>
+  </div>
+
+  <div class="router" id="d9815-router">
+    <div class="eyebrow">Start here</div>
+    <h2 class="fr">What do you need today?</h2>
+    <div class="grid">
+
+      <a class="tile" href="https://rotary9815.org.au/page/flow-lookup">
+        <div class="ic" style="background:#17458F">&#9881;</div>
+        <h3>Run my club</h3>
+        <p>Step-by-step hubs for every office-bearer.</p>
+        <span class="go">Open the hubs &rarr;</span>
+      </a>
+
+      <a class="tile" href="https://rotary9815.org.au/page/membership-flow">
+        <div class="ic" style="background:#0067C8">&#128101;</div>
+        <h3>Grow membership</h3>
+        <p>Connect and keep members &mdash; don't just recruit.</p>
+        <span class="go">Get the playbook &rarr;</span>
+      </a>
+
+      <a class="tile" href="https://rotary9815.org.au/sitepage/forms-and-policies">
+        <div class="ic" style="background:#00A2E0">&#128196;</div>
+        <h3>Find a form</h3>
+        <p>Grants, insurance, events and child safety.</p>
+        <span class="go">Browse forms &rarr;</span>
+      </a>
+
+      <a class="tile" href="https://rotary9815.org.au/events">
+        <div class="ic" style="background:#F7A81B;color:#3a2700">&#128197;</div>
+        <h3>See what's on</h3>
+        <p>Events and changeovers across the District.</p>
+        <span class="go">View the calendar &rarr;</span>
+      </a>
+
+      <a class="tile" href="https://rotary9815.org.au/page/public-image-flow">
+        <div class="ic" style="background:#1D9E75">&#128226;</div>
+        <h3>Tell our story</h3>
+        <p>Public image and promotion made simple.</p>
+        <span class="go">Boost your image &rarr;</span>
+      </a>
+
+      <a class="tile" href="https://rotary9815.org.au/page/become-a-member-1">
+        <div class="ic" style="background:#D85A30">&#129309;</div>
+        <h3>I'm new to Rotary</h3>
+        <p>Curious about joining? Start your journey here.</p>
+        <span class="go">Discover Rotary &rarr;</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num" style="color:#17458F">84</div><div class="lbl">clubs, one community</div></div>
+    <div class="stat"><div class="num" style="color:#0067C8">2,236</div><div class="lbl">Rotarians serving</div></div>
+    <div class="stat"><div class="num" style="color:#1D9E75">7</div><div class="lbl">areas of focus</div></div>
+  </div>
+
+</div>
+
+<!-- ================================================================= -->
+<!-- DROP-IN WIDGET ENDS HERE                                           -->
+<!-- ================================================================= -->
+
+</body>
+</html>
