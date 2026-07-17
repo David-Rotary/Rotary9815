@@ -354,7 +354,7 @@
 
   <div class="confirmation" id="confirmation">
     <h3>Preferences recorded</h3>
-    <p>Your delegation's speaking-order preferences have been saved. A copy of the summary below is also available to email directly to the organiser as a backup.</p>
+    <p>Your delegation's speaking-order preferences have been saved to the organiser's results sheet. A copy of the summary below is also available to email directly to the organiser as a backup.</p>
     <div class="summary" id="summaryText"></div>
     <div class="email-actions">
       <a href="#" class="mailto-btn" id="mailtoLink" target="_blank" rel="noopener">Email a copy to the organiser</a>
@@ -378,6 +378,7 @@
 
 <script>
 const ORGANISER_EMAIL = "david.button@rotary9815.org.au";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxG1i9gdlvQR7hFJulOHU86n7mTUZMpKSu_iGsI4Qb7fyxsPZtPvqwJQQp5N1whWTGT/exec";
 const ROLES = [
   {key:"Sponsor", desc:"Reads the resolution, delivers the opening speech."},
   {key:"Seconder", desc:"Supports the Sponsor, delivers the second speech."},
@@ -457,6 +458,19 @@ form.addEventListener("submit", async (e) => {
     await window.storage.set(`submission:${delegation}`, JSON.stringify(data), true);
   }catch(err){
     console.error("Storage error:", err);
+  }
+
+  try{
+    // no-cors + text/plain avoids a CORS preflight that Apps Script web apps don't handle;
+    // the response is opaque (unreadable) but the row still lands in the Sheet.
+    await fetch(SHEET_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    });
+  }catch(err){
+    console.error("Sheet submission error:", err);
   }
 
   const summary = buildSummary(data);
