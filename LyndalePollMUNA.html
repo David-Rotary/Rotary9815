@@ -311,6 +311,10 @@
             </select>
           </div>
           <div class="field">
+            <label class="field-label" for="teacherEmail">Teacher / coach email</label>
+            <input type="email" id="teacherEmail" placeholder="e.g. jsmith@school.edu.au" required>
+          </div>
+          <div class="field">
             <label class="field-label" for="school">School / team (optional)</label>
             <input type="text" id="school" placeholder="e.g. Lyndale SC">
           </div>
@@ -348,13 +352,13 @@
 
     <div class="submit-row">
       <button type="submit" class="btn-primary">Submit preferences</button>
-      <span class="error-msg" id="errorMsg">Please add your name, delegation, and at least one role or note before submitting.</span>
+      <span class="error-msg" id="errorMsg">Please add your name, a valid email, delegation, and at least one role or note before submitting.</span>
     </div>
   </form>
 
   <div class="confirmation" id="confirmation">
     <h3>Preferences recorded</h3>
-    <p>Your delegation's speaking-order preferences have been saved to the organiser's results sheet. A copy of the summary below is also available to email directly to the organiser as a backup.</p>
+    <p>Your delegation's speaking-order preferences have been saved to the organiser's results sheet, and a confirmation email is on its way to the address you entered. A copy of the summary below is also available to email directly to the organiser as a backup.</p>
     <div class="summary" id="summaryText"></div>
     <div class="email-actions">
       <a href="#" class="mailto-btn" id="mailtoLink" target="_blank" rel="noopener">Email a copy to the organiser</a>
@@ -417,6 +421,7 @@ function buildSummary(data){
   let lines = [];
   lines.push(`MUN Speaking Order Poll — ${data.school ? data.school + " · " : ""}${data.delegation}`);
   lines.push(`Teacher/coach: ${data.teacherName}`);
+  lines.push(`Email: ${data.teacherEmail}`);
   lines.push("");
   lines.push(`Resolution 1 (Migration and Development):`);
   lines.push(`  Role: ${data.res1.role || "(none selected)"}`);
@@ -436,21 +441,23 @@ const form = document.getElementById("pollForm");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const teacherName = document.getElementById("teacherName").value.trim();
+  const teacherEmail = document.getElementById("teacherEmail").value.trim();
   const delegation = document.getElementById("delegation").value;
   const school = document.getElementById("school").value.trim();
   const res1 = { role: getSelectedRole("res1"), notes: document.getElementById("res1notes").value.trim() };
   const res2 = { role: getSelectedRole("res2"), notes: document.getElementById("res2notes").value.trim() };
 
   const errorMsg = document.getElementById("errorMsg");
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(teacherEmail);
   const hasAnyPreference = res1.role || res1.notes || res2.role || res2.notes;
-  if(!teacherName || !delegation || !hasAnyPreference){
+  if(!teacherName || !delegation || !emailValid || !hasAnyPreference){
     errorMsg.style.display = "block";
     return;
   }
   errorMsg.style.display = "none";
 
   const data = {
-    teacherName, delegation, school, res1, res2,
+    teacherName, teacherEmail, delegation, school, res1, res2,
     submittedAt: new Date().toISOString()
   };
 
@@ -529,7 +536,7 @@ async function loadOrganiserView(){
     rows.sort((a,b) => a.delegation.localeCompare(b.delegation));
 
     let html = `<table class="results"><thead><tr>
-      <th>Delegation</th><th>Teacher</th><th>School</th>
+      <th>Delegation</th><th>Teacher</th><th>Email</th><th>School</th>
       <th>Res 1 role</th><th>Res 1 notes</th>
       <th>Res 2 role</th><th>Res 2 notes</th>
       </tr></thead><tbody>`;
@@ -537,6 +544,7 @@ async function loadOrganiserView(){
       html += `<tr>
         <td>${r.delegation}</td>
         <td>${r.teacherName}</td>
+        <td>${r.teacherEmail || "—"}</td>
         <td>${r.school || "—"}</td>
         <td>${r.res1.role || "—"}</td>
         <td>${r.res1.notes || "—"}</td>
