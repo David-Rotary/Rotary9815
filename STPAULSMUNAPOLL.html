@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUN Speaking Order Poll — St Paul's Anglican Grammar School</title>
+<style>
+  :root{
+    --navy:#1c2a44;
+    --navy-deep:#111a2c;
+    --parchment:#f6f1e6;
+    --parchment-dark:#ece3cf;
+    --brass:#a9803f;
+    --brass-light:#c9a05e;
+    --ink:#242018;
+    --ink-soft:#5a5346;
+    --line:#d8cdae;
+    --good:#3f6b4c;
+    --bad:#a1402f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px 80px;}
+
+  header.masthead{
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:var(--parchment);
+    padding:36px 20px 30px;
+    border-bottom:4px solid var(--brass);
+  }
+  header.masthead .inner{max-width:840px;margin:0 auto;}
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--brass-light);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:700;
+    font-size:30px;
+    margin:0 0 8px;
+    letter-spacing:.01em;
+  }
+  .event-line{
+    font-size:15px;
+    color:#cfd6e6;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+
+  .card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:3px;
+    margin-top:26px;
+    box-shadow:0 1px 2px rgba(28,42,68,.06);
+  }
+  .card-head{
+    padding:16px 22px;
+    border-bottom:1px solid var(--line);
+    background:var(--parchment-dark);
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .card-head h2{
+    font-family:Georgia,serif;
+    font-size:18px;
+    margin:0;
+    color:var(--navy);
+  }
+  .card-head .tag{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+  }
+  .card-body{padding:20px 22px 24px;}
+
+  .field-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .field{flex:1 1 220px;margin-bottom:16px;}
+  label.field-label{
+    display:block;
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  input[type=text], select, textarea{
+    width:100%;
+    padding:9px 11px;
+    border:1px solid #bcb193;
+    border-radius:2px;
+    background:#fffdf8;
+    font-size:14.5px;
+    color:var(--ink);
+    font-family:inherit;
+  }
+  input[type=text]:focus, select:focus, textarea:focus{
+    outline:2px solid var(--brass);
+    outline-offset:1px;
+    border-color:var(--brass);
+  }
+  textarea{resize:vertical;min-height:56px;}
+
+  .role-plate{
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:12px 14px;
+    background:var(--parchment);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+    cursor:pointer;
+    transition:box-shadow .15s, border-color .15s;
+  }
+  .role-plate:hover{border-color:var(--brass);}
+  .role-plate.selected{
+    border-color:var(--navy);
+    background:#fff;
+    box-shadow:0 2px 5px rgba(28,42,68,.12), inset 0 0 0 1px var(--navy);
+  }
+  .role-plate input{margin:0;width:16px;height:16px;accent-color:var(--navy);flex-shrink:0;}
+  .role-plate .role-name{font-weight:600;font-size:14.5px;}
+  .role-plate .role-desc{font-size:12.5px;color:var(--ink-soft);margin-top:1px;}
+
+  .resolution-title{
+    font-size:12px;
+    color:var(--brass);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+
+  .info-panel{
+    background:var(--parchment-dark);
+    border-left:3px solid var(--brass);
+    padding:12px 16px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:20px 0;
+  }
+
+  button{
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--navy);
+    color:#fff;
+    border:none;
+    padding:13px 26px;
+    border-radius:2px;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    background:transparent;
+    color:var(--navy);
+    border:1px solid var(--navy);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:13.5px;
+    font-weight:600;
+  }
+  .btn-secondary:hover{background:var(--navy);color:#fff;}
+  .btn-link{
+    background:none;
+    border:none;
+    color:var(--navy);
+    text-decoration:underline;
+    font-size:13px;
+    padding:0;
+  }
+
+  .submit-row{
+    margin-top:28px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .error-msg{
+    color:var(--bad);
+    font-size:13px;
+    margin-top:10px;
+    display:none;
+  }
+
+  .confirmation{
+    display:none;
+    background:#fff;
+    border:1px solid var(--good);
+    border-left:4px solid var(--good);
+    padding:22px 24px;
+    margin-top:26px;
+    border-radius:3px;
+  }
+  .confirmation h3{margin:0 0 8px;color:var(--good);font-family:Georgia,serif;font-size:18px;}
+  .confirmation .summary{
+    background:var(--parchment);
+    border:1px solid var(--line);
+    padding:12px 14px;
+    font-size:13.5px;
+    margin:14px 0;
+    white-space:pre-wrap;
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    line-height:1.6;
+  }
+  .email-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  a.mailto-btn{
+    display:inline-block;
+    background:var(--brass);
+    color:#fff;
+    text-decoration:none;
+    padding:11px 20px;
+    border-radius:2px;
+    font-size:13.5px;
+    font-weight:600;
+  }
+  a.mailto-btn:hover{background:#8f6c33;}
+
+  footer.organiser{
+    margin-top:40px;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+  .org-toggle{font-size:13px;color:var(--ink-soft);}
+  #orgPanel{display:none;margin-top:14px;}
+  table.results{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    background:#fff;
+  }
+  table.results th, table.results td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:left;
+  }
+  table.results th{
+    background:var(--parchment-dark);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+  }
+  .empty-state{color:var(--ink-soft);font-size:13.5px;font-style:italic;}
+  .storage-note{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">Model United Nations Assembly</div>
+    <h1>Speaking Order Poll</h1>
+    <div class="event-line">St Paul's Anglican Grammar School, Warragul Campus · Saturday 1 August</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="info-panel">
+    For each prepared resolution, nominate <strong>one role only</strong>, or write a ranked preference
+    (1st, 2nd, 3rd choice) in the notes field. Roles: <strong>Sponsor</strong>, <strong>Seconder</strong>,
+    <strong>First Against</strong>. The unprepared resolution (Resolution 3) is assigned on the day, 30 minutes
+    before that debate begins — no submission needed for it here.
+  </div>
+
+  <form id="pollForm">
+
+    <div class="card">
+      <div class="card-head"><h2>Your delegation</h2></div>
+      <div class="card-body">
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label" for="teacherName">Teacher / coach name</label>
+            <input type="text" id="teacherName" placeholder="e.g. J. Smith" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="delegation">Delegation</label>
+            <select id="delegation" required>
+              <option value="">Select delegation…</option>
+              <option>Australia</option><option>Indonesia</option><option>Japan</option>
+              <option>Turkiye</option><option>UK</option><option>USA</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="school">School / team (optional)</label>
+            <input type="text" id="school" placeholder="e.g. St Paul's Anglican GS">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-resolution="Resolution 1: Migration and Development">
+      <div class="card-head">
+        <h2>Resolution 1</h2>
+        <span class="tag">Migration and Development</span>
+      </div>
+      <div class="card-body">
+        <div class="role-options" data-res="res1"></div>
+        <div class="field" style="margin-top:12px;">
+          <label class="field-label" for="res1notes">Notes / preference order or No preference (optional)</label>
+          <textarea id="res1notes" placeholder="e.g. 1 = Seconder, 2 = Sponsor, 3 = First Against"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-resolution="Resolution 2: No First Placement of Weapons in Outer Space">
+      <div class="card-head">
+        <h2>Resolution 2</h2>
+        <span class="tag">No First Placement of Weapons in Outer Space</span>
+      </div>
+      <div class="card-body">
+        <div class="role-options" data-res="res2"></div>
+        <div class="field" style="margin-top:12px;">
+          <label class="field-label" for="res2notes">Notes / preference order or No preference (optional)</label>
+          <textarea id="res2notes" placeholder="e.g. 1 = Seconder, 2 = Sponsor, 3 = First Against"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-primary">Submit preferences</button>
+      <span class="error-msg" id="errorMsg">Please add your name, delegation, and at least one role or note before submitting.</span>
+    </div>
+  </form>
+
+  <div class="confirmation" id="confirmation">
+    <h3>Preferences recorded</h3>
+    <p>Your delegation's speaking-order preferences have been saved to the organiser's results sheet. A copy of the summary below is also available to email directly to the organiser as a backup.</p>
+    <div class="summary" id="summaryText"></div>
+    <div class="email-actions">
+      <a href="#" class="mailto-btn" id="mailtoLink" target="_blank" rel="noopener">Email a copy to the organiser</a>
+      <button type="button" class="btn-secondary" id="editAgainBtn">Submit another delegation</button>
+    </div>
+    <p class="storage-note">Emailing is optional — your response is already saved. Use it if you'd like your own record or a direct confirmation to the organiser.</p>
+  </div>
+
+  <footer class="organiser">
+    <button type="button" class="btn-link org-toggle" id="orgToggle">Organiser view — show all submitted preferences</button>
+    <div id="orgPanel">
+      <p class="storage-note">This view is shared: anyone who opens this poll can see submissions listed here.</p>
+      <div id="orgContent"><p class="empty-state">Loading…</p></div>
+      <div style="margin-top:14px;">
+        <a href="#" class="mailto-btn" id="exportMailto" target="_blank" rel="noopener">Email full results to organiser</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const ORGANISER_EMAIL = "david.button@rotary9815.org.au";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbxFzjdz7VoHRrugOYD28vouU29EmI-paBuLQgzvoOp0Q8uE-kHJOX1ZiqOUYOAh-MMiDg/exec";
+const EVENT_TAB = "Responses - St Pauls";
+const STORAGE_PREFIX = "stpauls_submission:";
+const ROLES = [
+  {key:"Sponsor", desc:"Reads the resolution, delivers the opening speech."},
+  {key:"Seconder", desc:"Supports the Sponsor, delivers the second speech."},
+  {key:"First Against", desc:"Leads the opposition, delivers the first speech against."}
+];
+
+function buildRoleOptions(container, resKey){
+  container.innerHTML = "";
+  ROLES.forEach(r => {
+    const id = resKey + "_" + r.key.replace(/\s+/g,"");
+    const wrap = document.createElement("label");
+    wrap.className = "role-plate";
+    wrap.setAttribute("for", id);
+    wrap.innerHTML = `
+      <input type="radio" name="${resKey}_role" id="${id}" value="${r.key}">
+      <span>
+        <div class="role-name">${r.key}</div>
+        <div class="role-desc">${r.desc}</div>
+      </span>`;
+    container.appendChild(wrap);
+  });
+  container.addEventListener("change", () => {
+    container.querySelectorAll(".role-plate").forEach(p => p.classList.remove("selected"));
+    const checked = container.querySelector("input:checked");
+    if(checked) checked.closest(".role-plate").classList.add("selected");
+  });
+}
+document.querySelectorAll(".role-options").forEach(el => buildRoleOptions(el, el.dataset.res));
+
+function getSelectedRole(resKey){
+  const el = document.querySelector(`input[name="${resKey}_role"]:checked`);
+  return el ? el.value : "";
+}
+
+function buildSummary(data){
+  let lines = [];
+  lines.push(`MUN Speaking Order Poll — ${data.school ? data.school + " · " : ""}${data.delegation}`);
+  lines.push(`Teacher/coach: ${data.teacherName}`);
+  lines.push("");
+  lines.push(`Resolution 1 (Migration and Development):`);
+  lines.push(`  Role: ${data.res1.role || "(none selected)"}`);
+  if(data.res1.notes) lines.push(`  Notes: ${data.res1.notes}`);
+  lines.push("");
+  lines.push(`Resolution 2 (No First Placement of Weapons in Outer Space):`);
+  lines.push(`  Role: ${data.res2.role || "(none selected)"}`);
+  if(data.res2.notes) lines.push(`  Notes: ${data.res2.notes}`);
+  return lines.join("\n");
+}
+
+function buildMailto(subject, body){
+  return `mailto:${ORGANISER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+const form = document.getElementById("pollForm");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const teacherName = document.getElementById("teacherName").value.trim();
+  const delegation = document.getElementById("delegation").value;
+  const school = document.getElementById("school").value.trim();
+  const res1 = { role: getSelectedRole("res1"), notes: document.getElementById("res1notes").value.trim() };
+  const res2 = { role: getSelectedRole("res2"), notes: document.getElementById("res2notes").value.trim() };
+
+  const errorMsg = document.getElementById("errorMsg");
+  const hasAnyPreference = res1.role || res1.notes || res2.role || res2.notes;
+  if(!teacherName || !delegation || !hasAnyPreference){
+    errorMsg.style.display = "block";
+    return;
+  }
+  errorMsg.style.display = "none";
+
+  const data = {
+    teacherName, delegation, school, res1, res2,
+    eventTab: EVENT_TAB,
+    submittedAt: new Date().toISOString()
+  };
+
+  try{
+    await window.storage.set(`${STORAGE_PREFIX}${delegation}`, JSON.stringify(data), true);
+  }catch(err){
+    console.error("Storage error:", err);
+  }
+
+  try{
+    // no-cors + text/plain avoids a CORS preflight that Apps Script web apps don't handle;
+    // the response is opaque (unreadable) but the row still lands in the Sheet.
+    await fetch(SHEET_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data)
+    });
+  }catch(err){
+    console.error("Sheet submission error:", err);
+  }
+
+  const summary = buildSummary(data);
+  document.getElementById("summaryText").textContent = summary;
+  document.getElementById("mailtoLink").href = buildMailto(
+    `MUN Speaking Order Poll (St Paul's) – ${delegation}`, summary
+  );
+
+  form.style.display = "none";
+  document.getElementById("confirmation").style.display = "block";
+  document.getElementById("confirmation").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+document.getElementById("editAgainBtn").addEventListener("click", () => {
+  form.reset();
+  document.querySelectorAll(".role-plate").forEach(p => p.classList.remove("selected"));
+  document.getElementById("confirmation").style.display = "none";
+  form.style.display = "block";
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+// Organiser view
+const orgToggle = document.getElementById("orgToggle");
+const orgPanel = document.getElementById("orgPanel");
+let orgLoaded = false;
+
+orgToggle.addEventListener("click", async () => {
+  const showing = orgPanel.style.display === "block";
+  orgPanel.style.display = showing ? "none" : "block";
+  orgToggle.textContent = showing
+    ? "Organiser view — show all submitted preferences"
+    : "Organiser view — hide submitted preferences";
+  if(!showing) await loadOrganiserView();
+});
+
+async function loadOrganiserView(){
+  const orgContent = document.getElementById("orgContent");
+  orgContent.innerHTML = "<p class='empty-state'>Loading…</p>";
+  try{
+    const list = await window.storage.list(STORAGE_PREFIX, true);
+    const keys = (list && list.keys) ? list.keys : [];
+    if(keys.length === 0){
+      orgContent.innerHTML = "<p class='empty-state'>No submissions yet.</p>";
+      document.getElementById("exportMailto").href = buildMailto(
+        "MUN Speaking Order Poll (St Paul's) – results", "No submissions have been recorded yet."
+      );
+      return;
+    }
+    const rows = [];
+    for(const k of keys){
+      try{
+        const res = await window.storage.get(k, true);
+        if(res && res.value) rows.push(JSON.parse(res.value));
+      }catch(e){ /* skip unreadable key */ }
+    }
+    rows.sort((a,b) => a.delegation.localeCompare(b.delegation));
+
+    let html = `<table class="results"><thead><tr>
+      <th>Delegation</th><th>Teacher</th><th>School</th>
+      <th>Res 1 role</th><th>Res 1 notes</th>
+      <th>Res 2 role</th><th>Res 2 notes</th>
+      </tr></thead><tbody>`;
+    rows.forEach(r => {
+      html += `<tr>
+        <td>${r.delegation}</td>
+        <td>${r.teacherName}</td>
+        <td>${r.school || "—"}</td>
+        <td>${r.res1.role || "—"}</td>
+        <td>${r.res1.notes || "—"}</td>
+        <td>${r.res2.role || "—"}</td>
+        <td>${r.res2.notes || "—"}</td>
+      </tr>`;
+    });
+    html += "</tbody></table>";
+    orgContent.innerHTML = html;
+
+    let exportBody = "MUN Speaking Order Poll — all submitted preferences\n\n";
+    rows.forEach(r => {
+      exportBody += buildSummary(r) + "\n\n---\n\n";
+    });
+    document.getElementById("exportMailto").href = buildMailto(
+      "MUN Speaking Order Poll (St Paul's) – full results", exportBody
+    );
+  }catch(err){
+    orgContent.innerHTML = "<p class='empty-state'>Couldn't load submissions right now.</p>";
+    console.error("Load error:", err);
+  }
+}
+</script>
+
+</body>
+</html>
