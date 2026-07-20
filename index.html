@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My First Page again</title>
-    <nav style="text-align: center; padding: 15px; background: #17458F;">
-  <a href="index.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Home</a>
-  <a href="communications.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Communications Page</a>
-  <a href="MunaMain.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">MUNA</a>
-  <a href="MUNAWheel.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">MUNA Wheel</a>
-  <a href="Reasons.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Conference Reasons</a>    
-  <a href="D9815Nav2026.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">D9815Nav</a> 
-  <a href="TreasurerHUB.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Treasurer Hub</a>  
-  <a href="FindOurPeople.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Find our People</a>  
-  <a href="D9815Intro.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">D9815 intro</a>  
-  <a href="LyndalePollMUNA.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Lyndale Poll</a>  
-      <a href="STPAULSMUNAPOLL.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">St Pauls Poll</a> 
-      <a href="FlowHubExplainer.html" style="color: white; margin: 0 15px; text-decoration: none; font-family: Calibri, sans-serif;">Hub Explainer</a>
+<head>
+<title>My First Page again</title>
+<style>
+  nav.main {
+    background: #17458F;
+    padding: 15px;
+    text-align: center;
+    font-family: Calibri, sans-serif;
+  }
+  nav.main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+  }
+  nav.main > ul > li {
+    position: relative;
+    margin: 0 15px;
+  }
+  nav.main a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 2px;
+  }
+  nav.main a:hover {
+    text-decoration: underline;
+  }
+
+  /* the submenu itself */
+  nav.main .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #0B2A5C;
+    min-width: 190px;
+    padding: 6px 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    z-index: 10;
+  }
+  nav.main .submenu li { margin: 0; }
+  nav.main .submenu a {
+    display: block;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+  nav.main .submenu a:hover {
+    background: #17458F;
+    text-decoration: none;
+  }
+
+  /* reveal on hover (desktop) */
+  nav.main li:hover > .submenu { display: block; }
+
+  /* small caret to signal it's a dropdown */
+  nav.main .has-submenu > a::after { content: " ▾"; font-size: 11px; }
+</style>
+</head>
+<body style="font-family: Calibri, sans-serif; text-align: center; padding: 40px;">
+
+<nav class="main">
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="communications.html">Communications Page</a></li>
+
+  <li class="has-submenu">
+    <a href="MunaMain.html">MUNA</a>
+    <ul class="submenu">
+      <li><a href="MunaMain.html">MUNA Home</a></li>
+      <li><a href="MUNAWheel.html">MUNA Wheel</a></li>
+      <li><a href="LyndalePollMUNA.html">Lyndale Poll</a></li>
+      <li><a href="STPAULSMUNAPOLL.html">St Pauls Poll</a></li>
+    </ul>
+  </li>
+
+  <li><a href="Reasons.html">Conference Reasons</a></li>
+  <li><a href="D9815Nav2026.html">D9815Nav</a></li>
+  <li><a href="TreasurerHUB.html">Treasurer Hub</a></li>
+  <li><a href="FindOurPeople.html">Find our People</a></li>
+  <li><a href="D9815Intro.html">D9815 intro</a></li>
+  <li><a href="FlowHubExplainer.html">Hub Explainer</a></li>
+</ul>
 </nav>
-  </head>
-  <body style="font-family: Calibri, sans-serif; text-align: center; padding: 40px;">
-    <h1 style="color: #17458F;">Hello from David</h1>
-    <p>This is my very first web page, hosted on GitHub.</p>
-    <p>If you can read this, it worked.</p>
-  </body>
+
+<h1 style="color: #17458F;">Hello from David</h1>
+<p>This is my very first web page, hosted on GitHub.</p>
+<p>If you can read this, it worked.</p>
+
+</body>
 </html>
