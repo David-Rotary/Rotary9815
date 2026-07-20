@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>District 9815 Chair Hubs — Structure Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',sans-serif;font-size:15px;line-height:1.7;color:#1c2840;background:#f2f6fb;}
+code,.mono{font-family:'JetBrains Mono',monospace;font-size:0.85em;}
+a{color:#005daa;}
+h1,h2,h3{font-family:'Sora',sans-serif;color:#002f5e;line-height:1.25;}
+
+/* layout */
+.wrap{max-width:980px;margin:0 auto;padding:0 24px 100px;}
+header.top{
+  background:linear-gradient(135deg,#0B2A5C 0%,#17458F 45%,#0067C8 100%);
+  color:#fff;padding:44px 24px 40px;position:relative;overflow:hidden;
+}
+header.top::after{
+  content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,162,224,.35),transparent 70%);
+}
+header.top .inner{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#F7A81B;margin-bottom:10px;}
+header.top h1{color:#fff;font-size:clamp(24px,3.4vw,34px);font-weight:700;max-width:720px;}
+header.top p{color:#DCE7FA;max-width:640px;margin-top:12px;font-size:15px;}
+.rainbow{height:6px;background:linear-gradient(90deg,#17458F,#0067C8,#00A2E0,#F7A81B,#E4572E,#7A4FE0);}
+
+nav.jump{background:#fff;border-bottom:1px solid #d8e4f0;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,47,94,.05);}
+nav.jump .inner{max-width:980px;margin:0 auto;padding:0 24px;display:flex;gap:2px;overflow-x:auto;}
+nav.jump a{
+  font-family:'Sora',sans-serif;font-size:12.5px;font-weight:600;color:#6b7e9a;
+  padding:13px 14px;white-space:nowrap;border-bottom:3px solid transparent;
+}
+nav.jump a:hover{color:#005daa;}
+
+section{padding:48px 0 8px;border-top:1px solid #e3eaf3;}
+section:first-of-type{border-top:none;}
+section h2{font-size:22px;margin-bottom:6px;}
+section .lede{color:#5c6b85;font-size:14.5px;margin-bottom:24px;max-width:700px;}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:#e6f0fa;color:#1e40af;margin-bottom:14px;}
+
+/* diagram */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 28px;}
+.flow-box{
+  background:#fff;border:1px solid #d8e4f0;border-radius:12px;padding:14px 18px;
+  box-shadow:0 2px 8px rgba(0,47,94,.06);flex:1;min-width:200px;
+}
+.flow-box strong{display:block;font-family:'Sora',sans-serif;font-size:13.5px;color:#002f5e;margin-bottom:3px;}
+.flow-box span{font-size:12.5px;color:#6b7e9a;}
+.flow-arrow{font-size:20px;color:#00A2E0;flex-shrink:0;}
+@media(max-width:640px){.flow{flex-direction:column;align-items:stretch;}.flow-arrow{transform:rotate(90deg);align-self:center;}}
+
+/* page anatomy */
+.anatomy{display:flex;flex-direction:column;gap:0;border:1px solid #d8e4f0;border-radius:14px;overflow:hidden;margin:20px 0 28px;background:#fff;}
+.anat-row{display:flex;border-top:1px solid #edf2f7;}
+.anat-row:first-child{border-top:none;}
+.anat-label{
+  width:220px;flex-shrink:0;padding:14px 16px;background:#f6f9fc;
+  font-family:'Sora',sans-serif;font-size:12.5px;font-weight:700;color:#002f5e;
+  border-right:1px solid #edf2f7;display:flex;align-items:center;
+}
+.anat-detail{padding:14px 18px;font-size:13px;color:#374151;flex:1;}
+.anat-detail code{background:#eef4fb;padding:1px 6px;border-radius:5px;color:#1e40af;}
+.anat-detail .src{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:700;color:#78350f;background:#fff8e6;padding:2px 8px;border-radius:20px;}
+.anat-detail .src.static{color:#5b21b6;background:#ede9fe;}
+@media(max-width:640px){.anat-row{flex-direction:column;}.anat-label{width:100%;border-right:none;border-bottom:1px solid #edf2f7;}}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:18px 0 30px;font-size:13px;background:#fff;border:1px solid #d8e4f0;border-radius:12px;overflow:hidden;}
+th{
+  background:#002f5e;color:#fff;text-align:left;padding:10px 14px;
+  font-family:'Sora',sans-serif;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;
+}
+td{padding:10px 14px;border-top:1px solid #edf2f7;vertical-align:top;}
+tr:nth-child(even) td{background:#f9fbfd;}
+td code{background:#eef4fb;padding:1px 6px;border-radius:5px;color:#1e40af;white-space:nowrap;}
+td.dim{color:#8394ab;}
+
+.hubswitch{display:flex;gap:8px;margin:18px 0 8px;}
+.hubswitch button{
+  font-family:'Sora',sans-serif;font-size:12.5px;font-weight:700;padding:8px 16px;
+  border-radius:9px;border:1px solid #d8e4f0;background:#fff;color:#5c6b85;cursor:pointer;transition:.15s;
+}
+.hubswitch button.active{background:#002f5e;color:#fff;border-color:#002f5e;}
+.hubpane{display:none;}
+.hubpane.active{display:block;}
+
+.callout{
+  background:#fff8e6;border-left:3px solid #f0a500;border-radius:10px;
+  padding:14px 16px;font-size:13.5px;color:#78350f;margin:18px 0;line-height:1.6;
+}
+.callout strong{color:#5c3d05;}
+
+footer.end{padding:40px 0 10px;color:#8394ab;font-size:12.5px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+<div class="inner">
+<div class="eyebrow">Rotary District 9815 · Internal reference</div>
+<h1>How the Chair Hub pages are built</h1>
+<p>A structure guide to the Membership Chair Hub and Public Image Chair Hub: what each part of the page is called, and which Google Sheet tab controls it. Written so you can point someone at the right element without guessing.</p>
+</div>
+</header>
+<div class="rainbow"></div>
+
+<nav class="jump">
+<div class="inner">
+<a href="#overview">Overview</a>
+<a href="#anatomy">Page anatomy</a>
+<a href="#tabs">Sheet tab reference</a>
+<a href="#blocks">Card block types</a>
+<a href="#guide">Guided flow</a>
+<a href="#editing">Editing workflow</a>
+</div>
+</nav>
+
+<div class="wrap">
+
+<section id="overview">
+<span class="tag">Architecture</span>
+<h2>One HTML file, one Google Sheet</h2>
+<p class="lede">Both hubs work the same way: a single self-contained HTML file holds the design and behaviour, and a Google Sheet holds every word, link, and list on the page. Nothing is hard-coded except the overall shape (which tabs exist, what a card looks like) — the words inside that shape all come from the sheet.</p>
+
+<div class="flow">
+<div class="flow-box"><strong>Google Sheet</strong><span>One tab per content type — Cards, ChecklistItems, ResourceLinks, and so on</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box"><strong>Page loads</strong><span>The HTML fetches every tab over Google's public <code>gviz/tq</code> endpoint</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box"><strong>Rendered live</strong><span>JavaScript builds the hero, tabs, cards and planner from what it fetched</span></div>
+</div>
+
+<p>Because the fetch happens every time the page loads, editing a cell in the Sheet changes the live page the next time anyone opens it — no re-uploading the HTML, no rebuild step. The only thing wired into the HTML file itself is the Sheet's ID (<code>CONFIG.SHEET_ID</code> near the top of the <code>&lt;script&gt;</code> block) and the Sheet's sharing setting must be "Anyone with the link — Viewer".</p>
+</section>
+
+<section id="anatomy">
+<span class="tag">Layout</span>
+<h2>Page anatomy, top to bottom</h2>
+<p class="lede">Every region of the page, in the order it appears, and whether it's fixed in the HTML or pulled from the Sheet.</p>
+
+<div class="anatomy">
+<div class="anat-row">
+<div class="anat-label">Guided Flow panel</div>
+<div class="anat-detail">The dark blue strip with step text and Back / Next / Exit. Hidden until "Start Guided Flow" is clicked. <span class="src">Sheet-driven</span> — text comes from <code>GuideSteps</code>.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Breadcrumb</div>
+<div class="anat-detail">The small "Rotary District 9815 · Hub Name · …" line above the hero. <span class="src static">Fixed in HTML</span> — not editable from the Sheet.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Hero</div>
+<div class="anat-detail">Navy gradient banner: eyebrow line, heading, subtext, and the two CTA buttons (Start Guided Flow / View Year Planner). <span class="src">Sheet-driven</span> — text from <code>Settings</code>; Expand All / Collapse All buttons sit here too but are <span class="src static">fixed in HTML</span>.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Rainbow bar</div>
+<div class="anat-detail">The thin six-colour stripe under the hero. <span class="src static">Fixed in HTML</span>.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Menu pills (tab nav)</div>
+<div class="anat-detail">Overview / Attract / Onboard etc. — the row of clickable tabs below the hero. <span class="src static">Fixed in HTML</span>: the list of tabs and their icons is set in the page code, not the Sheet.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Stat row</div>
+<div class="anat-detail">The four or five number tiles at the top of the Overview tab (e.g. "7 Topic Areas"). <span class="src">Sheet-driven</span> — from <code>Stats</code>.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Section heading</div>
+<div class="anat-detail">Each grey icon + title + subtitle block that introduces a group of cards (e.g. "Your Role as Membership Chair"). <span class="src">Sheet-driven</span> — from <code>Sections</code>, one row per heading, grouped by which tab it belongs to.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Card grid → Card</div>
+<div class="anat-detail">The expandable white tiles under each section heading. Each card's icon, title, description and badge come from <code>Cards</code>; what's inside it when opened comes from several other tabs — see <a href="#blocks">Card block types</a> below. <span class="src">Sheet-driven</span>.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Health Check sliders</div>
+<div class="anat-detail">The self-rating sliders section on the Overview tab. <span class="src">Sheet-driven</span> — from <code>HealthSliders</code>. This section is special-cased by its <code>section_id</code> (<code>sec_health</code>) rather than holding cards.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">Year Planner quarters</div>
+<div class="anat-detail">The four Q1–Q4 tiles on the Year Planner tab. <span class="src">Sheet-driven</span> — quarter headings from <code>Quarters</code>, the action lines inside each from <code>QuarterItems</code>. Also special-cased by <code>section_id</code> (<code>sec_planner_main</code>).</div>
+</div>
+</div>
+
+<div class="callout"><strong>Rule of thumb:</strong> if you can imagine wanting to reword it without touching code, it's in the Sheet. If it's structural — which tabs exist, the order of card blocks by default, the colour palette — it's in the HTML.</div>
+</section>
+
+<section id="tabs">
+<span class="tag">Reference</span>
+<h2>Google Sheet tab reference</h2>
+<p class="lede">What each tab in the workbook controls. The two hubs are nearly identical; differences are called out below.</p>
+
+<div class="hubswitch">
+<button class="active" onclick="showHub('membership', this)">Membership Chair Hub</button>
+<button onclick="showHub('pi', this)">Public Image Chair Hub</button>
+</div>
+
+<div class="hubpane active" id="hub-membership">
+<table>
+<tr><th>Sheet tab</th><th>Controls</th><th>Key columns</th></tr>
+<tr><td><code>Settings</code></td><td>Header brand text, hero heading/subtext</td><td class="dim">key, value</td></tr>
+<tr><td><code>Stats</code></td><td>The stat tiles on Overview</td><td class="dim">order, number, label, color</td></tr>
+<tr><td><code>HeroPills</code></td><td>Not currently displayed on the page</td><td class="dim">order, text</td></tr>
+<tr><td><code>Sections</code></td><td>Every grey section heading, and which tab it belongs to</td><td class="dim">section_id, tab, order, icon, icon_bg, title, subtitle</td></tr>
+<tr><td><code>Cards</code></td><td>Every expandable card's icon/title/description/badge</td><td class="dim">card_id, section_id, order, icon, title, description, badge_text, badge_color</td></tr>
+<tr><td><code>ChecklistItems</code></td><td>Ticklist lines inside a card</td><td class="dim">card_id, order, text</td></tr>
+<tr><td><code>MatrixCells</code></td><td>The small coloured grid boxes inside a card</td><td class="dim">card_id, order, title, body, color</td></tr>
+<tr><td><code>ResourceLinks</code></td><td>Outbound links inside a card</td><td class="dim">card_id, order, label, url</td></tr>
+<tr><td><code>PipelineSteps</code></td><td>Numbered step lists inside a card</td><td class="dim">card_id, order, title, body, color</td></tr>
+<tr><td><code>Prompts</code></td><td>The highlighted 💡 tip callouts inside a card</td><td class="dim">card_id, order, color, text</td></tr>
+<tr><td><code>RiskCards</code> / <code>RiskItems</code></td><td>The Engaged / At Risk / Urgent columns on the "Early Warning Signs" card</td><td class="dim">card_id, order, label, color / card_id, risk_order, order, text</td></tr>
+<tr><td><code>HealthSliders</code></td><td>The Membership Health Check sliders</td><td class="dim">order, id, label</td></tr>
+<tr><td><code>GuideSteps</code></td><td>The 9 Guided Flow steps, and which card each step opens</td><td class="dim">order, tab, card_id, label, text</td></tr>
+<tr><td><code>Quarters</code></td><td>The 4 quarter headings on the Year Planner</td><td class="dim">order, label, icon</td></tr>
+<tr><td><code>QuarterItems</code></td><td>The action lines inside each quarter</td><td class="dim">quarter_order, order, text</td></tr>
+</table>
+</div>
+
+<div class="hubpane" id="hub-pi">
+<table>
+<tr><th>Sheet tab</th><th>Controls</th><th>Key columns</th></tr>
+<tr><td><code>Settings</code></td><td>Header brand text, hero heading/subtext</td><td class="dim">key, value</td></tr>
+<tr><td><code>Stats</code></td><td>The stat tiles on Overview</td><td class="dim">order, number, label, color</td></tr>
+<tr><td><code>Sections</code></td><td>Every grey section heading, and which tab it belongs to</td><td class="dim">section_id, tab, order, icon, icon_bg, title, subtitle</td></tr>
+<tr><td><code>Cards</code></td><td>Every expandable card's icon/title/description/badge, plus optional block order</td><td class="dim">card_id, section_id, order, icon, title, description, badge_text, badge_color, <strong>block_order</strong></td></tr>
+<tr><td><code>ChecklistItems</code></td><td>Ticklist lines inside a card</td><td class="dim">card_id, order, text</td></tr>
+<tr><td><code>MatrixCells</code></td><td>The small coloured grid boxes inside a card</td><td class="dim">card_id, order, title, body, color</td></tr>
+<tr><td><code>ResourceLinks</code></td><td>Outbound links inside a card</td><td class="dim">card_id, order, label, url</td></tr>
+<tr><td><code>TeamRoles</code></td><td>The role tiles inside "Build Your Communications Team"</td><td class="dim">card_id, order, icon, title, desc</td></tr>
+<tr><td><code>PipelineSteps</code></td><td>Numbered step lists inside a card (also used for the Press Release template)</td><td class="dim">card_id, order, title, body, color</td></tr>
+<tr><td><code>Prompts</code></td><td>The highlighted 💡 tip callouts inside a card</td><td class="dim">card_id, order, color, text</td></tr>
+<tr><td><code>HealthSliders</code></td><td>The Public Image Health Check sliders</td><td class="dim">order, id, label</td></tr>
+<tr><td><code>GuideSteps</code></td><td>The 8 Guided Flow steps, and which card each step opens</td><td class="dim">order, tab, card_id, label, text</td></tr>
+<tr><td><code>Quarters</code></td><td>The 4 quarter headings on the Year Planner</td><td class="dim">order, label, icon</td></tr>
+<tr><td><code>QuarterItems</code></td><td>The action lines inside each quarter</td><td class="dim">quarter_order, order, text</td></tr>
+</table>
+<p style="font-size:13px;color:#5c6b85;">No <code>RiskCards</code>/<code>RiskItems</code> or <code>HeroPills</code> tabs — this hub doesn't use the risk-grid card layout, and its hero has no pill row.</p>
+</div>
+</section>
+
+<section id="blocks">
+<span class="tag">Cards, opened up</span>
+<h2>Card block types</h2>
+<p class="lede">When a card is expanded, its contents are built from whichever of these block types have matching rows for that <code>card_id</code>. A card can use several — e.g. links followed by a checklist followed by a tip.</p>
+
+<table>
+<tr><th>Block</th><th>Sheet tab</th><th>What it renders</th></tr>
+<tr><td><code>rlinks</code></td><td>ResourceLinks</td><td>A stack of outbound link rows</td></tr>
+<tr><td><code>matrix</code></td><td>MatrixCells</td><td>A grid of small titled boxes</td></tr>
+<tr><td><code>checklist</code></td><td>ChecklistItems</td><td>Tickable checklist lines</td></tr>
+<tr><td><code>teamgrid</code></td><td>TeamRoles <span class="dim">(Public Image Hub only)</span></td><td>Role tiles with icon, title, description</td></tr>
+<tr><td><code>pipeline</code></td><td>PipelineSteps</td><td>Numbered step-by-step list</td></tr>
+<tr><td><code>prompts</code></td><td>Prompts</td><td>Highlighted 💡 tip callout(s)</td></tr>
+</table>
+
+<p>By default, blocks render in this order: <code>rlinks → matrix → checklist → teamgrid → pipeline → prompts</code>, skipping any type with no rows for that card. On the Public Image Hub, a card can override this by putting a comma list in its <code>block_order</code> cell on the <code>Cards</code> tab — e.g. <code>checklist,rlinks</code> — used for the one card ("Online Discovery & Google") where the checklist needed to come before its links.</p>
+</section>
+
+<section id="guide">
+<span class="tag">Walkthrough</span>
+<h2>How Guided Flow is wired</h2>
+<p class="lede">The <code>GuideSteps</code> tab is a simple script: each row is one step, naming which page tab it lives on, which card it should pop open, and the text shown in the panel.</p>
+
+<div class="anatomy">
+<div class="anat-row">
+<div class="anat-label">order</div>
+<div class="anat-detail">The sequence of steps — 1 through however many rows exist.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">tab</div>
+<div class="anat-detail">Which top-level tab to switch to for this step — must match a tab key used in the page (e.g. <code>overview</code>, <code>brand</code>, <code>planner</code>).</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">card_id</div>
+<div class="anat-detail">Which card to open and highlight in gold — must exactly match a <code>card_id</code> on the <code>Cards</code> tab.</div>
+</div>
+<div class="anat-row">
+<div class="anat-label">label / text</div>
+<div class="anat-detail">The small step counter label and the main panel copy shown while on that step.</div>
+</div>
+</div>
+
+<div class="callout"><strong>Adding a step:</strong> add a row to <code>GuideSteps</code> with the next order number, the tab it should jump to, and the exact <code>card_id</code> of the card it should open. No code changes needed.</div>
+</section>
+
+<section id="editing">
+<span class="tag">Day to day</span>
+<h2>Editing workflow</h2>
+<table>
+<tr><th>To…</th><th>Do this</th></tr>
+<tr><td>Reword something</td><td>Find the text in the relevant tab and edit the cell directly</td></tr>
+<tr><td>Reorder cards, links, or checklist items</td><td>Renumber the <code>order</code> column for that group</td></tr>
+<tr><td>Add a new card</td><td>Add a row to <code>Cards</code> with a new, unique <code>card_id</code>, then add matching rows to whichever content tabs it needs, using that same <code>card_id</code></td></tr>
+<tr><td>Remove a card or item</td><td>Delete its row — just don't delete a <code>card_id</code> that other tabs still reference</td></tr>
+<tr><td>Add a Guided Flow step</td><td>Add a row to <code>GuideSteps</code> pointing at an existing <code>tab</code> and <code>card_id</code></td></tr>
+<tr><td>Change a card's badge or block colour</td><td>Use one of: <code>blue, gold, green, purple, red, teal</code> — leave blank for the default</td></tr>
+</table>
+<p>Changes take effect the next time the page is loaded — there's nothing to publish or rebuild. If a page ever fails to load content, it shows a plain-English error naming the likely cause (usually the Sheet ID or its sharing setting).</p>
+</section>
+
+</div>
+
+<footer class="end">
+<div class="wrap" style="padding:0;">District 9815 · internal reference for the Membership Chair Hub and Public Image Chair Hub</div>
+</footer>
+
+<script>
+function showHub(id, btn){
+  document.querySelectorAll('.hubpane').forEach(p => p.classList.remove('active'));
+  document.getElementById('hub-' + id).classList.add('active');
+  btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
