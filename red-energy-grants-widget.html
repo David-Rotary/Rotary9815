@@ -1,0 +1,606 @@
+<!-- =====================================================================
+     Rotary Red Energy Community Grants — District 9815 landing page
+     ClubRunner custom widget. Paste everything into an HTML widget.
+     ---------------------------------------------------------------------
+     EDIT THESE THREE SETTINGS (in the <script> at the bottom, CONFIG):
+       formUrl  – link to the Word application form once uploaded to
+                  ClubRunner Documents (leave '' to route to email instead)
+       logoUrl  – Red Energy logo image URL
+       nextRound – e.g. 'Round 1 closes 31 March 2027' (leave '' to hide)
+     ===================================================================== -->
+<div id="reg-root">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+#reg-root{--navy:#17458F;--azure:#0067C8;--sky:#00A2E0;--gold:#F7A81B;--red:#E2231A;--ink:#1d2433;--muted:#5b6475;--line:#e3e8f0;--soft:#f4f7fb;
+  font-family:'Hanken Grotesk',Arial,sans-serif;color:var(--ink);font-size:16px;line-height:1.55;background:#fff;}
+#reg-root *{box-sizing:border-box;}
+#reg-root h1,#reg-root h2,#reg-root h3{font-family:'Fraunces',Georgia,serif;margin:0;line-height:1.15;color:var(--navy);}
+#reg-root p{margin:0 0 12px;}
+#reg-root a{color:var(--azure);}
+#reg-root button{font-family:inherit;cursor:pointer;}
+
+/* breadcrumb + hero */
+#reg-root .reg-crumb{font-size:13px;color:var(--muted);padding:10px 24px;}
+#reg-root .reg-crumb b{color:var(--navy);font-weight:600;}
+#reg-root .reg-hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#0B2A5C 0%,#17458F 55%,#0067C8 100%);color:#fff;padding:36px 24px;}
+#reg-root .reg-hero:before{content:"";position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(226,35,26,.45) 0%,rgba(226,35,26,0) 70%);}
+#reg-root .reg-hero-in{position:relative;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;}
+#reg-root .reg-hero-txt{flex:1 1 440px;}
+#reg-root .reg-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:30px;margin-bottom:14px;}
+#reg-root .reg-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;}
+#reg-root .reg-hero h1{color:#fff;font-size:38px;margin-bottom:12px;}
+#reg-root .reg-hero h1 em{font-style:normal;color:var(--gold);}
+#reg-root .reg-hero p{color:rgba(255,255,255,.88);font-size:17px;max-width:620px;}
+#reg-root .reg-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+#reg-root .reg-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 14px;font-size:13px;}
+#reg-root .reg-stat b{display:block;font-family:'Fraunces',Georgia,serif;font-size:20px;color:#fff;}
+#reg-root .reg-hero-cta{flex:0 1 300px;display:flex;flex-direction:column;gap:10px;}
+#reg-root .reg-btn{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:12px 18px;border-radius:30px;border:2px solid transparent;transition:transform .15s,background .15s;}
+#reg-root .reg-btn:hover{transform:translateY(-1px);}
+#reg-root .reg-btn-gold{background:var(--gold);color:#17243d;}
+#reg-root .reg-btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+#reg-root .reg-btn-ghost:hover{background:rgba(255,255,255,.1);}
+#reg-root .reg-btn-navy{background:var(--navy);color:#fff;}
+#reg-root .reg-btn-red{background:var(--red);color:#fff;}
+#reg-root .reg-partner{display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;justify-content:center;}
+#reg-root .reg-partner{background:#fff;border-radius:14px;padding:10px 16px;flex-direction:column;gap:2px;color:var(--muted);font-weight:600;letter-spacing:.4px;text-transform:uppercase;font-size:11px;box-shadow:0 6px 18px rgba(0,0,0,.18);}
+#reg-root .reg-partner img{height:52px;width:auto;display:block;}
+#reg-root .reg-step .reg-step-logo{height:30px;width:auto;display:block;margin-bottom:8px;}
+#reg-root .reg-close-logo{display:inline-block;background:#fff;border-radius:14px;padding:10px 18px;margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.2);}
+#reg-root .reg-close-logo img{height:48px;width:auto;display:block;}
+#reg-root .reg-round{background:var(--red);color:#fff;font-weight:700;font-size:13px;border-radius:8px;padding:8px 12px;text-align:center;}
+#reg-root .reg-rainbow{height:6px;background:linear-gradient(90deg,#17458F 0 16.6%,#0067C8 16.6% 33.3%,#00A2E0 33.3% 50%,#F7A81B 50% 66.6%,#E2231A 66.6% 83.3%,#872175 83.3% 100%);}
+
+/* nav pills */
+#reg-root .reg-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 24px;background:var(--soft);border-bottom:1px solid var(--line);}
+#reg-root .reg-pill{background:#fff;border:1px solid var(--line);color:var(--navy);font-weight:600;font-size:14px;padding:7px 14px;border-radius:30px;}
+#reg-root .reg-pill:hover,#reg-root .reg-pill.on{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* sections */
+#reg-root .reg-sec{padding:40px 24px;border-bottom:1px solid var(--line);}
+#reg-root .reg-sec.alt{background:var(--soft);}
+#reg-root .reg-sec-head{max-width:760px;margin-bottom:24px;}
+#reg-root .reg-kicker{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+#reg-root .reg-sec h2{font-size:30px;margin-bottom:8px;}
+#reg-root .reg-sec-head p{color:var(--muted);font-size:16px;}
+#reg-root .reg-grid{display:flex;flex-wrap:wrap;gap:16px;}
+#reg-root .reg-card{flex:1 1 230px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;}
+#reg-root .reg-card h3{font-size:19px;margin-bottom:6px;}
+
+/* how it works loop */
+#reg-root .reg-loop{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;}
+#reg-root .reg-step{flex:1 1 170px;background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px;text-align:left;transition:border-color .2s,box-shadow .2s;}
+#reg-root .reg-step .n{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;align-items:center;justify-content:center;margin-bottom:8px;font-size:14px;}
+#reg-root .reg-step b{display:block;color:var(--navy);font-size:16px;}
+#reg-root .reg-step span{font-size:13px;color:var(--muted);}
+#reg-root .reg-step.on{border-color:var(--red);box-shadow:0 6px 18px rgba(226,35,26,.15);}
+#reg-root .reg-step.on .n{background:var(--red);}
+#reg-root .reg-step-detail{margin-top:14px;background:#fff;border-left:4px solid var(--red);border-radius:8px;padding:14px 18px;font-size:15px;}
+
+/* calculator */
+#reg-root .reg-calc{margin-top:24px;background:linear-gradient(120deg,#0B2A5C,#17458F);color:#fff;border-radius:16px;padding:22px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;}
+#reg-root .reg-calc-l{flex:1 1 320px;}
+#reg-root .reg-calc h3{color:#fff;font-size:21px;margin-bottom:6px;}
+#reg-root .reg-calc p{color:rgba(255,255,255,.82);font-size:14px;}
+#reg-root .reg-calc input[type=range]{width:100%;accent-color:var(--gold);margin-top:6px;}
+#reg-root .reg-calc-r{flex:0 1 240px;text-align:center;background:rgba(255,255,255,.1);border-radius:14px;padding:16px;}
+#reg-root .reg-big{font-family:'Fraunces',Georgia,serif;font-size:40px;color:var(--gold);line-height:1;}
+#reg-root .reg-calc-r small{display:block;color:rgba(255,255,255,.8);font-size:13px;margin-top:6px;}
+
+/* grant categories */
+#reg-root .reg-cat{flex:1 1 220px;border:2px solid var(--line);border-radius:14px;padding:20px;background:#fff;transition:all .2s;}
+#reg-root .reg-cat .amt{font-family:'Fraunces',Georgia,serif;font-size:26px;color:var(--navy);}
+#reg-root .reg-cat .lbl{font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+#reg-root .reg-cat.on{border-color:var(--gold);background:#fff9ec;box-shadow:0 6px 18px rgba(247,168,27,.25);}
+#reg-root .reg-amount{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+#reg-root .reg-amount label{font-weight:700;color:var(--navy);}
+#reg-root .reg-amount input[type=range]{width:100%;accent-color:var(--navy);}
+#reg-root .reg-amount-out{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-top:6px;}
+#reg-root .reg-amount-out b{font-family:'Fraunces',Georgia,serif;font-size:28px;color:var(--navy);}
+#reg-root .reg-note{font-size:14px;color:var(--muted);}
+#reg-root .reg-warn{color:#a3160f;font-weight:600;}
+
+/* eligibility checker */
+#reg-root .reg-check{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;max-width:760px;}
+#reg-root .reg-prog{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+#reg-root .reg-prog div{height:100%;background:var(--red);width:0;transition:width .3s;}
+#reg-root .reg-q{font-family:'Fraunces',Georgia,serif;font-size:22px;color:var(--navy);margin-bottom:6px;}
+#reg-root .reg-qhint{color:var(--muted);font-size:14px;margin-bottom:16px;}
+#reg-root .reg-ans{display:flex;flex-wrap:wrap;gap:10px;}
+#reg-root .reg-ans button{flex:1 1 140px;padding:12px;border-radius:10px;border:2px solid var(--line);background:#fff;font-weight:700;font-size:15px;color:var(--navy);}
+#reg-root .reg-ans button:hover{border-color:var(--navy);background:var(--soft);}
+#reg-root .reg-res{border-radius:12px;padding:18px 20px;margin-bottom:14px;}
+#reg-root .reg-res.ok{background:#e9f7ef;border:1px solid #9ad3b0;}
+#reg-root .reg-res.mid{background:#fff6e5;border:1px solid #f3cf8a;}
+#reg-root .reg-res.no{background:#fdecea;border:1px solid #f1aaa5;}
+#reg-root .reg-res h3{font-size:21px;margin-bottom:6px;}
+#reg-root .reg-res ul{margin:8px 0 0 18px;padding:0;font-size:15px;}
+#reg-root .reg-link{background:none;border:none;color:var(--azure);font-weight:700;padding:0;font-size:14px;text-decoration:underline;}
+
+/* chips */
+#reg-root .reg-two{display:flex;flex-wrap:wrap;gap:20px;}
+#reg-root .reg-two > div{flex:1 1 320px;}
+#reg-root .reg-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+#reg-root .reg-chip{font-size:14px;font-weight:600;padding:7px 12px;border-radius:30px;}
+#reg-root .reg-chip.yes{background:#e8f1fb;color:var(--navy);border:1px solid #c5dbf3;}
+#reg-root .reg-chip.no{background:#fdecea;color:#8c1b14;border:1px solid #f4c4c0;}
+#reg-root .reg-h3s{font-size:19px;display:flex;align-items:center;gap:8px;}
+
+/* criteria */
+#reg-root .reg-crit{flex:1 1 220px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+#reg-root .reg-crit b{display:flex;justify-content:space-between;gap:8px;color:var(--navy);font-size:16px;}
+#reg-root .reg-crit b:after{content:"+";color:var(--red);font-size:20px;line-height:1;}
+#reg-root .reg-crit.open b:after{content:"–";}
+#reg-root .reg-crit div{display:none;font-size:14px;color:var(--muted);margin-top:8px;}
+#reg-root .reg-crit.open div{display:block;}
+#reg-root .reg-crit.open{border-color:var(--azure);}
+
+/* apply */
+#reg-root .reg-tl{list-style:none;margin:0;padding:0;}
+#reg-root .reg-tl li{position:relative;padding:0 0 18px 48px;}
+#reg-root .reg-tl li:before{content:attr(data-n);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;}
+#reg-root .reg-tl li:after{content:"";position:absolute;left:15px;top:34px;bottom:2px;width:2px;background:var(--line);}
+#reg-root .reg-tl li:last-child:after{display:none;}
+#reg-root .reg-tl b{color:var(--navy);display:block;}
+#reg-root .reg-tl span{font-size:14px;color:var(--muted);}
+#reg-root .reg-ready label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px;cursor:pointer;}
+#reg-root .reg-ready input{margin-top:4px;accent-color:var(--red);width:17px;height:17px;flex:none;}
+#reg-root .reg-ready-count{font-weight:700;color:var(--navy);margin-top:10px;}
+#reg-root textarea,#reg-root input[type=text],#reg-root input[type=email],#reg-root select{width:100%;font-family:inherit;font-size:15px;padding:10px 12px;border:1px solid #cfd7e3;border-radius:8px;background:#fff;color:var(--ink);}
+#reg-root textarea{min-height:140px;resize:vertical;}
+#reg-root .reg-wc{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:14px;flex-wrap:wrap;}
+#reg-root .reg-wc b.over{color:#a3160f;}
+#reg-root .reg-small-btn{border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:20px;padding:6px 14px;font-weight:700;font-size:13px;}
+#reg-root .reg-small-btn:hover{background:var(--navy);color:#fff;}
+
+/* showcase */
+#reg-root .reg-show{display:flex;flex-wrap:wrap;gap:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;}
+#reg-root .reg-show-l{flex:1 1 260px;background:linear-gradient(135deg,#E2231A,#9d130d);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:center;}
+#reg-root .reg-show-l h3{color:#fff;font-size:24px;margin-bottom:6px;}
+#reg-root .reg-show-r{flex:2 1 360px;padding:24px;}
+
+/* committee + contact */
+#reg-root .reg-chair{display:flex;gap:16px;align-items:center;margin-bottom:16px;}
+#reg-root .reg-av{width:64px;height:64px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',Georgia,serif;font-size:24px;flex:none;}
+#reg-root .reg-members{list-style:none;padding:0;margin:0;font-size:15px;}
+#reg-root .reg-members li{padding:8px 0;border-bottom:1px solid var(--line);}
+#reg-root .reg-form label{display:block;font-weight:600;font-size:14px;color:var(--navy);margin:12px 0 4px;}
+#reg-root .reg-form .reg-btn{margin-top:16px;border:none;width:100%;}
+#reg-root .reg-fine{font-size:13px;color:var(--muted);margin-top:10px;}
+
+/* faq */
+#reg-root .reg-faq{max-width:860px;}
+#reg-root .reg-faq button{display:flex;justify-content:space-between;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-weight:700;font-size:16px;color:var(--navy);margin-top:8px;}
+#reg-root .reg-faq button:after{content:"+";color:var(--red);font-size:20px;line-height:1;}
+#reg-root .reg-faq button.open:after{content:"–";}
+#reg-root .reg-faq .a{display:none;padding:12px 18px 4px;font-size:15px;color:var(--ink);}
+#reg-root .reg-faq .a.open{display:block;}
+
+/* closing band */
+#reg-root .reg-close{background:linear-gradient(120deg,#0B2A5C,#17458F 60%,#0067C8);color:#fff;padding:36px 24px;text-align:center;}
+#reg-root .reg-close h2{color:#fff;font-size:28px;margin-bottom:8px;}
+#reg-root .reg-close p{color:rgba(255,255,255,.88);}
+#reg-root .reg-phone{font-family:'Fraunces',Georgia,serif;font-size:36px;color:var(--gold);text-decoration:none;display:inline-block;margin:6px 0;}
+#reg-root .reg-toast{display:none;margin-top:8px;font-size:13px;color:#1f7a45;font-weight:700;}
+
+@media (max-width:640px){
+  #reg-root .reg-hero h1{font-size:30px;}
+  #reg-root .reg-sec h2{font-size:25px;}
+  #reg-root .reg-sec,#reg-root .reg-hero{padding-left:16px;padding-right:16px;}
+  #reg-root .reg-nav,#reg-root .reg-crumb{padding-left:16px;padding-right:16px;}
+}
+</style>
+
+<div class="reg-crumb">District 9815 › Programs › <b>Red Energy Community Grants</b></div>
+
+<header class="reg-hero">
+  <div class="reg-hero-in">
+    <div class="reg-hero-txt">
+      <div class="reg-eyebrow"><i></i>Rotary Red Energy Community Grants</div>
+      <h1>Your club's project <em>could be next</em></h1>
+      <p>Red Energy pays $5 a month to District 9815 for every gas or electricity service on the Red Rotary D9815 Saver plan. That money comes back to clubs as grants for local community projects.</p>
+      <div class="reg-stats">
+        <div class="reg-stat"><b>$5</b>per service, every month</div>
+        <div class="reg-stat"><b>Up to $5,000</b>per grant</div>
+        <div class="reg-stat"><b>1–2 rounds</b>each Rotary year</div>
+      </div>
+    </div>
+    <div class="reg-hero-cta">
+      <div class="reg-round" id="reg-round" style="display:none"></div>
+      <a href="#" class="reg-btn reg-btn-gold" data-go="reg-elig">Check your eligibility</a>
+      <a href="#" class="reg-btn reg-btn-ghost" id="reg-form-btn">Get the application form</a>
+      <a href="#" class="reg-btn reg-btn-ghost" data-go="reg-contact">Contact the Committee</a>
+      <div class="reg-partner" id="reg-partner"><span>In partnership with</span><img class="reg-logo" alt="Red Energy"></div>
+    </div>
+  </div>
+</header>
+<div class="reg-rainbow"></div>
+
+<nav class="reg-nav" id="reg-nav">
+  <button class="reg-pill" data-go="reg-how">How it works</button>
+  <button class="reg-pill" data-go="reg-grants">Grant sizes</button>
+  <button class="reg-pill" data-go="reg-elig">Eligibility check</button>
+  <button class="reg-pill" data-go="reg-fund">What we fund</button>
+  <button class="reg-pill" data-go="reg-assess">How we assess</button>
+  <button class="reg-pill" data-go="reg-apply">How to apply</button>
+  <button class="reg-pill" data-go="reg-contact">Committee &amp; contact</button>
+  <button class="reg-pill" data-go="reg-faq">FAQ</button>
+</nav>
+
+<!-- HOW IT WORKS -->
+<section class="reg-sec" id="reg-how">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">How it works</div>
+    <h2>From power bill to club project</h2>
+    <p>Tap each step to see how the money flows.</p>
+  </div>
+  <div class="reg-loop" id="reg-loop">
+    <button class="reg-step on" data-i="0"><span class="n">1</span><b>Members switch</b><span>Rotarians, family and friends join the Saver plan</span></button>
+    <button class="reg-step" data-i="1"><img class="reg-logo reg-step-logo" alt="Red Energy"><b>Red Energy pays $5</b><span>Per service, every month</span></button>
+    <button class="reg-step" data-i="2"><span class="n">3</span><b>The fund grows</b><span>Held for District 9815 projects</span></button>
+    <button class="reg-step" data-i="3"><span class="n">4</span><b>Clubs apply</b><span>Grants of up to $5,000</span></button>
+    <button class="reg-step" data-i="4"><span class="n">5</span><b>Communities benefit</b><span>Projects delivered and celebrated</span></button>
+  </div>
+  <div class="reg-step-detail" id="reg-step-detail"></div>
+
+  <div class="reg-calc">
+    <div class="reg-calc-l">
+      <h3>What could your club add to the fund?</h3>
+      <p>Each gas or electricity service on the Red Rotary D9815 Saver plan adds $5 a month, paid by Red Energy, not by you. Move the slider to see what your members could contribute.</p>
+      <label for="reg-svc" style="font-weight:700">Services on the plan: <span id="reg-svc-n">10</span></label>
+      <input type="range" id="reg-svc" min="1" max="100" value="10">
+    </div>
+    <div class="reg-calc-r">
+      <div class="reg-big" id="reg-svc-out">$600</div>
+      <small>added to the grants fund each year</small>
+    </div>
+  </div>
+</section>
+
+<!-- GRANT SIZES -->
+<section class="reg-sec alt" id="reg-grants">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">Grant sizes</div>
+    <h2>Three grant categories</h2>
+    <p>The Committee sets the amount available each year based on the fund balance, and may award fewer or smaller grants depending on the quality of applications.</p>
+  </div>
+  <div class="reg-grid">
+    <div class="reg-cat" data-c="0"><div class="lbl">Small Community Grant</div><div class="amt">Up to $1,000</div><p class="reg-note" style="margin-top:6px">Equipment, materials or a focused local initiative.</p></div>
+    <div class="reg-cat" data-c="1"><div class="lbl">Standard Community Grant</div><div class="amt">$1,001 – $3,000</div><p class="reg-note" style="margin-top:6px">A well-scoped project with clear community benefit.</p></div>
+    <div class="reg-cat" data-c="2"><div class="lbl">Major Community Grant</div><div class="amt">$3,001 – $5,000</div><p class="reg-note" style="margin-top:6px">Larger projects, ideally delivered by several clubs together.</p></div>
+  </div>
+  <div class="reg-amount">
+    <label for="reg-amt">How much does your project need from the fund?</label>
+    <input type="range" id="reg-amt" min="100" max="7000" step="100" value="2000">
+    <div class="reg-amount-out"><b id="reg-amt-n">$2,000</b><span id="reg-amt-msg" class="reg-note"></span></div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section class="reg-sec" id="reg-elig">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">Quick check</div>
+    <h2>Is your project eligible?</h2>
+    <p>Seven quick questions. This is a guide only; the Committee makes the final call.</p>
+  </div>
+  <div class="reg-check" id="reg-check"></div>
+</section>
+
+<!-- WHAT WE FUND -->
+<section class="reg-sec alt" id="reg-fund">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">What we fund</div>
+    <h2>Projects we support, and what's out of scope</h2>
+  </div>
+  <div class="reg-two">
+    <div class="reg-card">
+      <h3 class="reg-h3s"><span style="color:#1f7a45">✔</span> Eligible project areas</h3>
+      <div class="reg-chips">
+        <span class="reg-chip yes">Community health</span><span class="reg-chip yes">Youth programs</span><span class="reg-chip yes">Environmental projects</span><span class="reg-chip yes">Community infrastructure</span><span class="reg-chip yes">Equipment purchases</span><span class="reg-chip yes">Emergency relief</span><span class="reg-chip yes">Food security</span><span class="reg-chip yes">Seniors programs</span><span class="reg-chip yes">Disability support</span><span class="reg-chip yes">Education initiatives</span>
+      </div>
+    </div>
+    <div class="reg-card">
+      <h3 class="reg-h3s"><span style="color:#a3160f">✖</span> Generally not funded</h3>
+      <div class="reg-chips">
+        <span class="reg-chip no">Club administration</span><span class="reg-chip no">Club operating expenses</span><span class="reg-chip no">Social activities</span><span class="reg-chip no">Donations to other charities without a Rotary-led project</span><span class="reg-chip no">Projects already completed</span><span class="reg-chip no">International projects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section class="reg-sec" id="reg-assess">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">How we assess</div>
+    <h2>What makes a strong application</h2>
+    <p>Applications are assessed against seven criteria. Tap each one for the question the Committee will be asking.</p>
+  </div>
+  <div class="reg-grid" id="reg-crits"></div>
+</section>
+
+<!-- APPLY -->
+<section class="reg-sec alt" id="reg-apply">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">How to apply</div>
+    <h2>Six steps from idea to impact</h2>
+  </div>
+  <div class="reg-two">
+    <div>
+      <ol class="reg-tl">
+        <li data-n="1"><b>Talk to us early</b><span>Check your idea with the Committee Chair or your Rotary Community Leader. Projects involving several clubs are especially welcome.</span></li>
+        <li data-n="2"><b>Get the application form</b><span>A single two-page form: club details, a 100-word description, beneficiaries, dates and budget.</span></li>
+        <li data-n="3"><b>Complete and sign</b><span>Include your budget, any other funding sources and the applicant declaration.</span></li>
+        <li data-n="4"><b>Email it to the Committee</b><span>Send the completed form to the Committee Chair before the round closes.</span></li>
+        <li data-n="5"><b>Assessment</b><span>The Committee reviews all applications in the round against the seven criteria.</span></li>
+        <li data-n="6"><b>Deliver and report back</b><span>Complete within 12 months, send an acquittal with photos, and acknowledge the program.</span></li>
+      </ol>
+      <a href="#" class="reg-btn reg-btn-navy" id="reg-form-btn2" style="max-width:320px">Get the application form</a>
+    </div>
+    <div>
+      <div class="reg-card reg-ready" style="margin-bottom:16px">
+        <h3>Have you got everything ready?</h3>
+        <div id="reg-ready"></div>
+        <div class="reg-ready-count" id="reg-ready-count"></div>
+      </div>
+      <div class="reg-card">
+        <h3>Draft your 100-word description</h3>
+        <p class="reg-note">The form allows 100 words maximum. Draft it here, then copy it across.</p>
+        <textarea id="reg-desc" placeholder="Describe your project and what you hope to achieve…"></textarea>
+        <div class="reg-wc"><span><b id="reg-wc">0</b> / 100 words</span><button class="reg-small-btn" id="reg-copy">Copy text</button></div>
+        <div class="reg-toast" id="reg-toast">Copied to clipboard</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reg-card" style="margin-top:20px">
+    <h3>If your grant is approved, your club agrees to…</h3>
+    <div class="reg-grid" style="margin-top:12px">
+      <div style="flex:1 1 200px"><b style="color:var(--navy)">⏱ Deliver in 12 months</b><p class="reg-note">Complete the project within 12 months of approval.</p></div>
+      <div style="flex:1 1 200px"><b style="color:var(--navy)">📷 Acquit with photos</b><p class="reg-note">Provide a short acquittal report and photographs.</p></div>
+      <div style="flex:1 1 200px"><b style="color:var(--navy)">🙌 Acknowledge support</b><p class="reg-note">Credit the Rotary Red Energy Community Grants Program.</p></div>
+      <div style="flex:1 1 200px"><b style="color:var(--navy)">📣 Promote the partnership</b><p class="reg-note">Share the Red Energy partnership story where appropriate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALREADY AT WORK -->
+<section class="reg-sec" id="reg-work">
+  <div class="reg-show">
+    <div class="reg-show-l">
+      <div class="reg-kicker" style="color:#ffd9d6">Already at work</div>
+      <h3>Proudly supporting the Kids Fun Run with Puffing Billy</h3>
+    </div>
+    <div class="reg-show-r">
+      <p>One of the first projects supported through the partnership is the Rotary Club of Emerald &amp; District's Kids Fun Run with Puffing Billy, now in its 23rd year, where children aged three to twelve race the iconic steam train to raise funds for children's health and wellbeing.</p>
+      <p class="reg-note" style="margin:0">Delivered your grant-supported project? Send photos to the Committee and we'll share your story here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITTEE + CONTACT -->
+<section class="reg-sec alt" id="reg-contact">
+  <div class="reg-sec-head">
+    <div class="reg-kicker">Committee &amp; contact</div>
+    <h2>Your first point of contact for grant enquiries</h2>
+  </div>
+  <div class="reg-two">
+    <div class="reg-card">
+      <div class="reg-chair">
+        <div class="reg-av">SC</div>
+        <div><h3>Sue Cornelissen</h3><div class="reg-note">District Red Energy Chair · Chair, Assessment Committee</div><a href="#" id="reg-mail-link" style="font-weight:700;font-size:15px"></a></div>
+      </div>
+      <p class="reg-note">Sue receives and processes all grant applications and is happy to talk through project ideas before you apply.</p>
+      <h3 style="font-size:17px;margin:16px 0 6px">The Assessment Committee</h3>
+      <ul class="reg-members">
+        <li><b>District Red Energy Chair</b> (Chair): Sue Cornelissen</li>
+        <li><b>District Governor nominee</b>, with support from their DG cohort</li>
+        <li><b>District Treasurer</b> (or nominee)</li>
+        <li><b>Two Rotary members</b> appointed by the District 9815 Board</li>
+      </ul>
+    </div>
+    <div class="reg-card reg-form">
+      <h3>Send an enquiry</h3>
+      <p class="reg-note">Fill this in and we'll open a pre-written email to the Committee Chair in your email program.</p>
+      <label for="reg-f-type">What's it about?</label>
+      <select id="reg-f-type">
+        <option>Project idea – is it eligible?</option>
+        <option>Request the application form</option>
+        <option>Submitting an application</option>
+        <option>Acquittal / project report</option>
+        <option>The Red Rotary D9815 Saver plan</option>
+        <option>Something else</option>
+      </select>
+      <label for="reg-f-name">Your name</label><input type="text" id="reg-f-name">
+      <label for="reg-f-club">Your club</label><input type="text" id="reg-f-club" placeholder="Rotary Club of …">
+      <label for="reg-f-phone">Phone (optional)</label><input type="text" id="reg-f-phone">
+      <label for="reg-f-msg">Your message</label><textarea id="reg-f-msg" style="min-height:100px"></textarea>
+      <button class="reg-btn reg-btn-red" id="reg-f-send">Open email to the Committee</button>
+      <div class="reg-fine">Submitting an application? Remember to attach your completed form to the email.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="reg-sec" id="reg-faq">
+  <div class="reg-sec-head"><div class="reg-kicker">FAQ</div><h2>Common questions</h2></div>
+  <div class="reg-faq" id="reg-faq-list"></div>
+</section>
+
+<!-- CLOSE -->
+<div class="reg-close">
+  <div class="reg-close-logo"><img class="reg-logo" alt="Red Energy"></div>
+  <h2>The more Savers, the more projects</h2>
+  <p>Every service on the plan grows the fund for clubs across District 9815. Share it with your members, family and friends.</p>
+  <a class="reg-phone" href="tel:131806">13 18 06</a>
+  <p style="margin:0">Call and mention <b>"Red Rotary D9815 Saver"</b></p>
+</div>
+
+<script>
+(function(){
+  /* ================= CONFIG — edit these ================= */
+  var CONFIG = {
+    formUrl: 'https://portal.clubrunner.ca/50387/Documents/en-au/c81bdabb-c5ba-4703-8c84-36b542fe45d7/1/',     // ClubRunner document link to the Word application form
+    logoUrl: 'https://clubrunner.blob.core.windows.net/00000050387/Images/2026-27/logos/Red-Energy.png',     // Red Energy logo (ClubRunner Images)
+    nextRound: ''    // e.g. 'Round 1 closes 31 March 2027'
+  };
+  /* ======================================================= */
+  var EM = ['sueandwil','hotmail.com'].join('@'); // assembled to reduce spam harvesting
+
+  function boot(){
+    var root = document.getElementById('reg-root');
+    if(!root || !root.querySelector('#reg-faq-list')){ return setTimeout(boot,150); }
+    var $ = function(s){ return root.querySelector(s); };
+    var $$ = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var fmt = function(n){ return '$' + n.toLocaleString('en-AU'); };
+
+    /* scroll nav */
+    $$('[data-go]').forEach(function(el){
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        var t = root.querySelector('#'+el.getAttribute('data-go'));
+        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+        $$('.reg-pill').forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-go')===el.getAttribute('data-go')); });
+      });
+    });
+
+    /* config bits */
+    if(CONFIG.nextRound){ var r=$('#reg-round'); r.textContent=CONFIG.nextRound; r.style.display='block'; }
+    $$('img.reg-logo').forEach(function(im){ im.src = CONFIG.logoUrl; });
+    function mailto(subject, body){ return 'mailto:'+EM+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body||''); }
+    var ml = $('#reg-mail-link'); ml.textContent = EM; ml.href = mailto('Red Energy Community Grants enquiry');
+    ['#reg-form-btn','#reg-form-btn2'].forEach(function(id){
+      var b=$(id);
+      if(CONFIG.formUrl){ b.href=CONFIG.formUrl; b.target='_blank'; b.rel='noopener'; }
+      else { b.href=mailto('Request: Red Energy Community Grant application form','Hi Sue,\n\nCould you please send me the Rotary Red Energy D9815 Community Grant application form?\n\nName:\nClub:\n\nThanks'); }
+    });
+
+    /* how it works */
+    var steps = [
+      'Rotarians, their families and friends switch their gas or electricity to the <b>Red Rotary D9815 Saver</b> plan by calling <b>13 18 06</b> and mentioning the plan name.',
+      'For every service on the plan, <b>Red Energy pays $5 a month</b> to Rotary District 9815. It costs the customer nothing extra.',
+      'The money is held in the <b>Rotary Red Energy Community Grants Fund</b>. The Committee sets how much is available each year based on the fund balance.',
+      'Rotary clubs apply in one or two <b>grant rounds each Rotary year</b>, for Small, Standard or Major Community Grants. Preference goes to clubs with active Red Energy participants.',
+      'Clubs deliver their projects within 12 months, report back with photos, and help tell the story, which encourages more Savers and grows the fund for the next round.'
+    ];
+    function showStep(i){
+      $$('.reg-step').forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-i')===i); });
+      $('#reg-step-detail').innerHTML = steps[i];
+    }
+    $$('.reg-step').forEach(function(s){ s.addEventListener('click', function(){ showStep(+s.getAttribute('data-i')); }); });
+    showStep(0);
+
+    var svc=$('#reg-svc');
+    function calc(){ var n=+svc.value; $('#reg-svc-n').textContent=n; $('#reg-svc-out').textContent=fmt(n*5*12); }
+    svc.addEventListener('input', calc); calc();
+
+    /* grant sizes */
+    var amt=$('#reg-amt');
+    function amtUpd(){
+      var v=+amt.value, c = v<=1000?0 : v<=3000?1 : v<=5000?2 : -1;
+      $('#reg-amt-n').textContent = fmt(v);
+      $$('.reg-cat').forEach(function(el){ el.classList.toggle('on', +el.getAttribute('data-c')===c); });
+      var m=$('#reg-amt-msg');
+      if(c===-1){ m.className='reg-warn'; m.textContent='Above the $5,000 maximum. Consider partnering with other clubs or combining with other funding sources, and list them on the form.'; }
+      else { m.className='reg-note'; m.textContent='That sits in the '+['Small','Standard','Major'][c]+' Community Grant category.'; }
+    }
+    amt.addEventListener('input', amtUpd); amtUpd();
+
+    /* eligibility checker */
+    var Q = [
+      {q:'Is the applicant a Rotary club (or clubs) in District 9815?', h:'Grants are for Rotary clubs within a participating Rotary Community Group.', must:true, no:'Only Rotary clubs in District 9815 can apply.'},
+      {q:'Will the project benefit your local community?', h:'Projects must benefit the local community. International projects are not funded.', must:true, no:'Projects must benefit a local community; international projects aren\u2019t funded.'},
+      {q:'Is it a Rotary-led project?', h:'Your club plans and delivers it, rather than simply passing a donation to another charity.', must:true, no:'Donations to other charities without a Rotary-led project aren\u2019t funded.'},
+      {q:'Is the project still to be completed?', h:'Funding can\u2019t be given for projects that are already finished.', must:true, no:'Projects already completed can\u2019t be funded.'},
+      {q:'Is it free of club admin, operating or social costs?', h:'Club administration, running costs and social activities are not funded.', must:true, no:'Club administration, operating expenses and social activities aren\u2019t funded.'},
+      {q:'Can you complete it within 12 months?', h:'Successful clubs agree to finish within 12 months and provide an acquittal with photos.', must:true, no:'Projects need to be delivered within 12 months of approval.'},
+      {q:'Does your club (or a partner club) support the Red Energy program, or involve more than one club?', h:'Not essential, but preference goes to clubs with active Red Energy participants, and projects involving several clubs are strongly encouraged.', must:false}
+    ];
+    var ans=[], qi=0, box=$('#reg-check');
+    function renderQ(){
+      if(qi>=Q.length) return renderRes();
+      var q=Q[qi];
+      box.innerHTML='<div class="reg-prog"><div style="width:'+(qi/Q.length*100)+'%"></div></div>'+
+        '<div class="reg-note" style="margin-bottom:6px">Question '+(qi+1)+' of '+Q.length+'</div>'+
+        '<div class="reg-q">'+q.q+'</div><div class="reg-qhint">'+q.h+'</div>'+
+        '<div class="reg-ans"><button data-a="1">Yes</button><button data-a="0">No</button><button data-a="2">Not sure</button></div>'+
+        (qi>0?'<div style="margin-top:14px"><button class="reg-link" id="reg-back">‹ Back</button></div>':'');
+      box.querySelectorAll('[data-a]').forEach(function(b){ b.addEventListener('click',function(){ ans[qi]=+b.getAttribute('data-a'); qi++; renderQ(); }); });
+      var bk=box.querySelector('#reg-back'); if(bk) bk.addEventListener('click',function(){ qi--; renderQ(); });
+    }
+    function renderRes(){
+      var fails=[], unsure=[], bonus=ans[Q.length-1]===1;
+      Q.forEach(function(q,i){ if(!q.must) return; if(ans[i]===0) fails.push(q.no); if(ans[i]===2) unsure.push(q.q); });
+      var html;
+      if(fails.length){
+        html='<div class="reg-res no"><h3>This project may not be eligible</h3><ul><li>'+fails.join('</li><li>')+'</li></ul><p style="margin:10px 0 0">Could the project be reshaped? Talk it through with the Committee Chair before you rule it out.</p></div>';
+      } else if(unsure.length){
+        html='<div class="reg-res mid"><h3>Looking promising: a couple of things to check</h3><p style="margin:0">You weren\u2019t sure about:</p><ul><li>'+unsure.join('</li><li>')+'</li></ul><p style="margin:10px 0 0">A quick chat with the Committee Chair will clear these up.</p></div>';
+      } else {
+        html='<div class="reg-res ok"><h3>Your project looks eligible</h3><p style="margin:0">'+(bonus?'And with Red Energy participation or several clubs involved, it lines up well with the Committee\u2019s preferences.':'Tip: getting members onto the Saver plan, or partnering with another club, will strengthen your application.')+'</p></div>';
+      }
+      box.innerHTML='<div class="reg-prog"><div style="width:100%"></div></div>'+html+
+        '<div style="display:flex;flex-wrap:wrap;gap:10px"><a href="#" class="reg-btn reg-btn-navy" data-go2="reg-apply" style="flex:1 1 180px">See how to apply</a><a href="#" class="reg-btn reg-btn-red" data-go2="reg-contact" style="flex:1 1 180px">Ask the Committee</a></div>'+
+        '<div style="margin-top:14px"><button class="reg-link" id="reg-restart">Start again</button></div>';
+      box.querySelectorAll('[data-go2]').forEach(function(el){ el.addEventListener('click',function(e){ e.preventDefault(); root.querySelector('#'+el.getAttribute('data-go2')).scrollIntoView({behavior:'smooth',block:'start'}); }); });
+      box.querySelector('#reg-restart').addEventListener('click',function(){ ans=[]; qi=0; renderQ(); });
+    }
+    renderQ();
+
+    /* assessment criteria */
+    var C=[
+      ['Community impact','What real difference will this make, and how will you know it worked?'],
+      ['Number of beneficiaries','Roughly how many people will benefit, directly and indirectly? Be realistic and specific.'],
+      ['Sustainability','Will the benefit last beyond the grant, through equipment, skills, ongoing programs or partnerships?'],
+      ['Rotary involvement','How are Rotarians hands-on in planning and delivering it? More clubs involved is a plus.'],
+      ['Value for money','Is the budget clear and itemised? What other funding, in-kind help or volunteer hours stretch the grant further?'],
+      ['Innovation','Is there something fresh about the approach, or does it meet a need others are missing?'],
+      ['Commitment to the Red Energy program','Does your club actively support the Red Rotary D9815 Saver plan and promote the partnership?']
+    ];
+    $('#reg-crits').innerHTML = C.map(function(c){ return '<button class="reg-crit"><b>'+c[0]+'</b><div>'+c[1]+'</div></button>'; }).join('');
+    $$('.reg-crit').forEach(function(b){ b.addEventListener('click',function(){ b.classList.toggle('open'); }); });
+
+    /* readiness checklist */
+    var R=['Project idea checked with the Committee Chair','Club name and contact person','Project name and amount requested','100-word project description','Who will benefit, and how many people','Start and completion dates (within 12 months)','Itemised budget','Other funding sources (if any)','Declaration signed by the club'];
+    $('#reg-ready').innerHTML = R.map(function(t,i){ return '<label><input type="checkbox" data-r="'+i+'"> <span>'+t+'</span></label>'; }).join('');
+    function readyCount(){ var n=$$('#reg-ready input:checked').length; $('#reg-ready-count').textContent = n===R.length ? '✔ All set. You\u2019re ready to submit.' : n+' of '+R.length+' ready'; }
+    $$('#reg-ready input').forEach(function(c){ c.addEventListener('change', readyCount); }); readyCount();
+
+    /* word counter */
+    var ta=$('#reg-desc');
+    function wc(){ var n=(ta.value.trim().match(/\S+/g)||[]).length, el=$('#reg-wc'); el.textContent=n; el.className = n>100?'over':''; }
+    ta.addEventListener('input', wc);
+    $('#reg-copy').addEventListener('click', function(){
+      var done=function(){ var t=$('#reg-toast'); t.style.display='block'; setTimeout(function(){ t.style.display='none'; },1800); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(ta.value).then(done, function(){ ta.select(); document.execCommand('copy'); done(); }); }
+      else { ta.select(); document.execCommand('copy'); done(); }
+    });
+
+    /* enquiry form */
+    $('#reg-f-send').addEventListener('click', function(){
+      var v=function(id){ return $(id).value.trim(); };
+      var type=v('#reg-f-type'), club=v('#reg-f-club');
+      var subj='Red Energy Grants: '+type+(club?' ('+club+')':'');
+      var body='Hi Sue,\n\n'+(v('#reg-f-msg')||'')+'\n\nName: '+v('#reg-f-name')+'\nClub: '+club+(v('#reg-f-phone')?'\nPhone: '+v('#reg-f-phone'):'')+'\n\nSent from the District 9815 Red Energy Community Grants page';
+      window.location.href = mailto(subj, body);
+    });
+
+    /* FAQ */
+    var F=[
+      ['When are the grant rounds?','One or two rounds are run each Rotary year, depending on the funds available. Round dates are announced on this page and through District communications.'],
+      ['How much can we apply for?','Up to $5,000. Small Community Grants are up to $1,000, Standard $1,001–$3,000, and Major $3,001–$5,000. The total available each year depends on the fund balance.'],
+      ['Can several clubs apply together?','Yes, and it\u2019s encouraged. Projects that bring clubs together and deliver significant community benefit are looked on favourably, especially for larger grants.'],
+      ['Do our members need to be Red Energy customers?','It isn\u2019t a requirement to apply, but preference is given to clubs with active Red Energy participants, and commitment to the program is one of the assessment criteria.'],
+      ['Can we get funding for a project we\u2019ve already finished?','No. Grants are for projects that are still to be delivered.'],
+      ['Can the grant go to another charity?','Only as part of a Rotary-led project. Straight donations to another charity are not funded.'],
+      ['What do we need to do if we\u2019re successful?','Complete the project within 12 months, provide a short acquittal with photographs, acknowledge the Rotary Red Energy Community Grants Program, and promote the partnership where appropriate.'],
+      ['How do members join the Red Rotary D9815 Saver plan?','Call Red Energy on 13 18 06 and mention \u201cRed Rotary D9815 Saver\u201d. Red Energy then pays $5 a month to the District for each gas or electricity service on the plan.'],
+      ['Who decides which projects are funded?','The Assessment Committee: the District Red Energy Chair (Sue Cornelissen), a District Governor nominee, the District Treasurer (or nominee), and two Rotary members appointed by the District 9815 Board.']
+    ];
+    $('#reg-faq-list').innerHTML = F.map(function(f){ return '<button>'+f[0]+'</button><div class="a">'+f[1]+'</div>'; }).join('');
+    $$('#reg-faq-list button').forEach(function(b){ b.addEventListener('click',function(){ b.classList.toggle('open'); b.nextElementSibling.classList.toggle('open'); }); });
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
+})();
+</script>
+</div>
